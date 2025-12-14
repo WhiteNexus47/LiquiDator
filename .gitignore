@@ -1,0 +1,27 @@
+# Environment variables
+.env
+
+# Netlify
+.netlify/
+.netlify/state.json
+
+# Python
+__pycache__/
+*.pyc
+
+# Node / build
+node_modules/
+dist/
+build/
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

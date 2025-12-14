@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YourShop - Shop</title>
+    <link href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/shop.css">
+
+    <style>
+        #header {
+            position: relative;
+            z-index: 100;
+        }
+
+        .shop-controls-wrapper {
+            position: relative;
+            width: 100%;
+            z-index: 2;
+            background: transparent;
+            border-bottom: none;
+            box-shadow: none;
+        }
+
+        body,
+        html {
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div id="openSidebarBtn">Filters & Search</div>
+
+    <div class="shop-layout">
+        <div class="shop-top-container sidebar-drawer" id="shopSidebar">
+            <div class="sidebar-close-btn" id="closeSidebarBtn">
+                <i class='bx bx-x'></i>
+            </div>
+            <div class="shop-controls-wrapper">
+                <div class="shop-controls">
+                    <div class="search-box">
+                        <input type="text" id="shopSearch" placeholder="Search products...">
+                        <i class='bx bx-search'></i>
+
+                        <div id="liveResults" class="live-results"></div>
+                    </div>
+                    <div class="top-controls">
+                        <div class="dropdown-wrapper">
+                            <button class="drop-btn" id="filterBtn">
+                                Filter <i class='bx bx-chevron-down'></i>
+                            </button>
+
+                            <div class="dropdown-panel" id="filterPanel">
+                                <h4>Price Range</h4>
+
+                                <div class="price-row">
+                                    <input type="number" id="minPrice" placeholder="Min $">
+                                    <input type="number" id="maxPrice" placeholder="Max $">
+                                </div>
+
+                                <div class="small">
+                                    <label for="inStockOnly"><input type="checkbox" id="inStockOnly"> In Stock
+                                        Only</label>
+                                    <label for="LowToHigh"><input type="checkbox" id="LowToHigh"> Low to High</label>
+                                    <label for="NewestFirst"><input type="checkbox" id="NewestFirst"> Newest
+                                        First</label>
+                                    <label for="OldestFirst"><input type="checkbox" id="OldestFirst"> Oldest
+                                        First</label>
+                                    <label for="AtoZ"><input type="checkbox" id="AtoZ"> A to Z</label>
+                                    <label for="PremiumOnly"><input type="checkbox" id="PremiumOnly"> Premium
+                                        Only</label>
+                                    <label for="TrendingOnly"><input type="checkbox" id="TrendingOnly"> Trending
+                                        Only</label>
+                                </div>
+
+                                <button id="applyFilter" class="apply-btn">Apply</button>
+                            </div>
+                        </div>
+                        <div class="dropdown-wrapper">
+                            <button class="drop-btn" id="categoryBtn">
+                                Category <i class='bx bx-chevron-down'></i>
+                            </button>
+
+                            <div class="dropdown-panel" id="categoryPanel">
+                                <h4>Select Category</h4>
+
+                                <div class="category-grid">
+                                    <span data-cat="all">All</span>
+                                    <span data-cat="Clothing">Clothing</span>
+                                    <span data-cat="Gadget">Gadget</span>
+                                    <span data-cat="Kids">Kids</span>
+                                    <span data-cat="Fashion">Fashion</span>
+                                    <span data-cat="Health">Health</span>
+                                    <span data-cat="Tools">Tools</span>
+                                    <span data-cat="Toys">Toys</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Recently Viewed -->
+                    <div class="recently-viewed" id="recentlyViewed">
+                        <h4>Recently Viewed</h4>
+                        <div class="recent-list" id="recentList"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="shop-container">
+            <div id="noResults" class="no-results" style="display: none;">
+                <h3>No products found</h3>
+                <p>Try clearing filters or searching for something else.</p>
+            </div>
+            <div id="shopProductList" class="product-grid"></div>
+            <div id="pagination" class="pagination"></div>
+        </div>
+    </div>
+
+    <script defer src="assets/js/utils.js"></script>
+    <script defer src="assets/js/main.js"></script>
+    <script defer src="assets/js/pagination.js"></script>
+    <script defer src="assets/js/products.js"></script>
+    <script defer src="assets/js/shop.js"></script>
+</body>
+
+</html>

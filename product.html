@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Page</title>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/product.css" />
+  <link href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css" rel="stylesheet" />
+  <script defer src="assets/js/utils.js"></script>
+  <script defer src="assets/js/main.js"></script>
+  <script defer src="assets/js/products.js"></script>
+</head>
+
+<body>
+  <div id="header"></div>
+
+  <section class="product-page">
+    <div class="product-gallery">
+      <div class="main-image-wrapper">
+        <img id="mainImage" class="main-image" src="" alt="Product Image" />
+        <button id="shareBtn" class="p-share-btn">
+          <i class='bx bx-paper-plane'></i>
+        </button>
+        <div id="ratingBox" class="p-rating-box"></div>
+      </div>
+      <div id="variantList" class="variant-list"></div>
+    </div>
+
+    <div class="product-info">
+      <span id="productTag" class="product-tag"></span>
+      <h1 id="productName" class="product-name"></h1>
+      <div id="priceBox" class="price-wrapper"></div>
+      <div class="save-box" id="saveBox"></div>
+      <div class="qty-selector">
+        <button id="qtyMinus">−</button>
+        <span id="qtyValue">1</span>
+        <button id="qtyPlus">+</button>
+      </div>
+      <p id="productDesc" class="product-desc"></p>
+      <ul id="productHighlights" class="product-highlights"></ul>
+      <button id="addToCartBtn" class="add-cart-btn">Add to Cart</button>
+    </div>
+  </section>
+
+  <section class="similar-products">
+    <h2>Similar Products</h2>
+    <div id="similarList" class="product-grid"></div>
+  </section>
+
+  <!-- Mobile sticky add-to-cart bar -->
+  <div class="mobile-cart-bar" aria-hidden="false">
+    <button id="mobileCartBtn" class="mobile-cart-btn">Add to Cart</button>
+  </div>
+
+</body>
+
+</html>

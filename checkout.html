@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout</title>
+    <link href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/checkout.css" />
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <section class="checkout-page">
+        <div class="checkout-container">
+
+            <div class="left-info">
+                <h2>Delivery Details</h2>
+                <div class="delivery-form">
+                    <div class="input-group name-row">
+                        <div class="name-field">
+                            <label>First Name*</label>
+                            <input id="cFirstName" type="text" placeholder="First Name" required />
+                        </div>
+
+                        <div class="name-field">
+                            <label>Last Name*</label>
+                            <input id="cLastName" type="text" placeholder="Last Name" required />
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Email / Contact*</label>
+                        <input id="cEmail" type="email" placeholder="Email Address" required />
+                    </div>
+
+                    <div class="input-group">
+                        <label>Country / Region*</label>
+                        <input id="cCountry" type="text" placeholder="Country / Region" required />
+                    </div>
+
+                    <div class="input-group">
+                        <label>House Number and Street Name*</label>
+                        <input id="cStreet" type="text" placeholder="Street Address" required />
+                    </div>
+
+                    <div class="input-group">
+                        <label>Town / City*</label>
+                        <input id="cCity" type="text" placeholder="Town / City" required />
+                    </div>
+
+                    <div class="input-group">
+                        <label>Postcode / ZIP*</label>
+                        <input id="cZip" type="text" placeholder="Postcode / ZIP" required />
+                    </div>
+
+                    <div class="input-group">
+                        <label>Additional Info</label>
+                        <textarea id="cAdditional" placeholder="Any additional delivery instructions"></textarea>
+                    </div>
+                </div>
+                <button id="placeOrderBtn" class="place-order-btn"><i class='bx  bxs-shopping-bag'></i> Place
+                    Order</button>
+            </div>
+
+            <div class="right-summary">
+                <h2>Your Items</h2>
+                <div id="checkoutItems" class="checkout-items"></div>
+
+                <div class="checkout-total">
+                    <h3>Total: $<span id="checkoutTotal">0</span></h3>
+                </div>
+            </div>
+
+        </div>
+        <p class="policy">Your personal data will be used to process your order,
+            support your experience throughout this website, and for other purposes described
+            in our <a href="privacy.html">privacy policy</a>.</p>
+    </section>
+
+    <div id="messageModal" class="modal hidden">
+        <div class="modal-box">
+            <h3>Send order via</h3>
+
+            <button type="button" id="sendEmailBtn"><img src="assets/icons/gmail.png" alt="Gmail"> Email</button>
+            <button type="button" id="sendWhatsappBtn"><img src="assets/icons/whatsapp.png" alt="WhatsApp"> WhatsApp</button>
+
+            <button type="button" class="close" onclick="closeModal()">Cancel</button>
+        </div>
+    </div>
+
+    <script defer src="assets/js/utils.js"></script>
+    <script defer src="assets/js/main.js"></script>
+    <script defer src="assets/js/checkout.js"></script>
+</body>
+
+</html>

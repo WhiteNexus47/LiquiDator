@@ -1,0 +1,470 @@
+/* ============================================
+   GLOBAL BEHAVIOR
+============================================ */
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.shop-layout {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 50px);
+    margin-top: 50px;
+    overflow: hidden;
+}
+
+/* ============================================
+   SIDEBAR (DESKTOP)
+============================================ */
+
+.shop-top-container {
+    width: 270px;
+    flex-shrink: 0;
+    background: var(--bg);
+    height: 100%;
+    overflow-y: auto;
+    position: sticky;
+    top: 80px;
+    padding: 18px 16px;
+}
+
+.shop-controls-wrapper {
+    width: 100%;
+}
+
+.shop-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+}
+
+/* ============================================
+   SEARCH BOX
+============================================ */
+
+#openSidebarBtn {
+    display: none;
+}
+
+.search-box {
+    position: relative;
+    width: 100%;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--brown);
+    background: #fff;
+    font-size: 1rem;
+    outline: none;
+}
+
+.search-box i {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.3rem;
+    color: var(--brown);
+}
+
+/* LIVE SEARCH DROPDOWN */
+.live-results {
+    position: absolute;
+    top: 105%;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    display: none;
+    max-height: 260px;
+    overflow-y: auto;
+    z-index: 9999;
+    animation: fadeIn 0.15s ease-out;
+}
+
+.live-results div {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.live-results div:hover {
+    background: var(--cream);
+}
+
+/* ============================================
+   FILTER + CATEGORY BUTTONS
+============================================ */
+
+.top-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.dropdown-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.drop-btn {
+    width: 100%;
+    padding: 10px 14px;
+    border: none;
+    background: var(--brown);
+    color: white;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.drop-btn:hover {
+    background: var(--caramel);
+}
+
+/* PANELS */
+.dropdown-panel {
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 18px;
+    z-index: 1000;
+    animation: dropdownFade 0.18s ease-out;
+}
+
+.dropdown-panel h4 {
+    font-size: 0.95rem;
+    color: var(--brown);
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+/* ============================================
+   RECENTLY VIEWED (SIDEBAR)
+============================================ */
+
+.recently-viewed {
+    margin-top: 22px;
+    padding-top: 12px;
+    border-top: 1px solid var(--brown-light);
+}
+
+.recently-viewed h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--brown);
+    margin-bottom: 10px;
+}
+
+.recent-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.recent-item {
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+    align-items: center;
+}
+
+.recent-item img {
+    width: 48px;
+    height: 48px;
+    border-radius: 6px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.recent-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.recent-info span {
+    font-size: 0.85rem;
+    color: var(--brown);
+    line-height: 1.2;
+}
+
+.recent-info small {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--brown-dark);
+}
+
+.recent-item:hover span {
+    text-decoration: underline;
+}
+
+/* PRICE */
+.price-row {
+    display: flex;
+    gap: 10px;
+}
+
+.price-row input {
+    width: 50%;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.price-row input:focus {
+    border-color: var(--brown);
+}
+
+/* CHECKBOX GROUP */
+.small {
+    margin: 12px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.small label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.small input[type="checkbox"] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+}
+
+.small input[type="checkbox"]:checked {
+    background: var(--brown);
+    border-color: var(--brown);
+}
+
+.apply-btn {
+    width: 100%;
+    padding: 10px;
+    background: var(--brown);
+    color: white;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.apply-btn:hover {
+    background: var(--caramel);
+}
+
+/* CATEGORIES */
+.category-grid {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.category-grid span {
+    padding: 8px 10px;
+    border: 1px solid var(--brown);
+    border-radius: 6px;
+    cursor: pointer;
+    color: #000;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.category-grid span:hover {
+    background: var(--cream);
+}
+
+/* ============================================
+   PRODUCT AREA
+============================================ */
+
+.shop-container {
+    flex: 1;
+    overflow-y: auto;
+    height: 100%;
+    padding: 25px;
+}
+
+.product-grid {
+    display: grid;
+    gap: 22px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    justify-content: start;
+}
+
+/* ALWAYS 2 columns on mobile */
+@media (max-width: 600px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+}
+
+/* EMPTY STATE */
+.no-results {
+    padding: 60px 20px;
+    text-align: center;
+    color: var(--brown);
+    opacity: 0.95;
+}
+
+/* PAGINATION */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.page-btn {
+    padding: 8px 14px;
+    background: var(--brown);
+    color: white;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+.page-btn.active {
+    background: var(--caramel);
+}
+
+.sidebar-close-btn {
+        display: none;
+}
+
+/* ============================================
+   MOBILE SIDEBAR DRAWER
+============================================ */
+
+@media (max-width: 800px) {
+    .shop-layout {
+        flex-direction: column;
+        height: auto;
+        margin-top: 0;
+    }
+
+    .shop-top-container {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        border-right: 1px solid var(--brown-light);
+        transition: 0.3s ease;
+        padding: 25px;
+        z-index: 2000;
+    }
+
+    .shop-top-container.active {
+        left: 0;
+    }
+
+    /* CLOSE BUTTON */
+    .sidebar-close-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: var(--brown);
+        color: #fff;
+        font-size: 1.6rem;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+        z-index: 3000;
+        transition: background 0.2s ease;
+    }
+
+    .sidebar-close-btn:hover {
+        background: var(--caramel);
+    }
+
+    #openSidebarBtn {
+        display: block;
+        background: var(--brown);
+        color: #fff;
+        padding: 10px 14px;
+        margin: 10px;
+        margin-top: 50px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .shop-controls {
+        margin-top: 40px;
+    }
+
+    .shop-container {
+        margin-top: 20px;
+        height: auto;
+        overflow-y: visible;
+        padding: 10px;
+    }
+
+}
+
+/* ============================================
+   ANIMATIONS
+============================================ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes dropdownFade {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
