@@ -274,11 +274,9 @@ async function sendOrder(channel) {
         "_blank"
       );
     } else {
-      window.location.href =
-        `mailto:whitenexushat@gmail.com?subject=` +
-        encodeURIComponent(`New Order ${pendingOrder.orderId}`) +
-        `&body=` +
-        encodeURIComponent(message);
+      await uiAlert(
+        "Email sending failed. Please use WhatsApp to complete your order."
+      );
     }
 
     disableCheckoutButtons(false);
