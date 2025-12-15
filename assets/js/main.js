@@ -16,9 +16,16 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   initCartButton();
 
-  const productList = await loadProducts();
-  const latest = productList.slice(-8); // last 8 items
-  renderProducts(latest, "latestList");
+  try {
+    const productList = await loadProducts();
+    const latest = productList.slice(-4); // last items
+    renderProducts(latest, "latestList");
+  } catch (err) {
+    console.warn("Could not load products for latest list", err);
+  }
+
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   initHeaderScroll();
   initMenuToggle();

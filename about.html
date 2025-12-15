@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>About Us — YourShop</title>
-
-  <!-- Use your global stylesheet so the root variables and header behavior apply -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link href="fonts.googleapis.com" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/main.css">
-  <!-- Page-specific styles (keeps it self-contained and safe to paste) -->
   <style>
     :root {
-      /* fallback if main.css not loaded */
       --brown: #8B5E34;
       --brown-light: #DCC3A4;
       --cream: #F8EDE3;
@@ -20,8 +20,12 @@
       --card-radius: 12px;
     }
 
-    html,body { background: var(--bg); color: var(--text); -webkit-font-smoothing:antialiased; }
-    #header { position: relative; z-index: 100; } /* required by you */
+    html,
+    body {
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
 
     .about-hero {
       display: grid;
@@ -29,11 +33,12 @@
       gap: 22px;
       max-width: 1200px;
       margin: 30px auto;
+      margin-top: 100px;
       padding: 28px;
       border-radius: var(--card-radius);
-      background: linear-gradient(180deg, rgba(248,237,227,0.9), rgba(255,255,255,0.85));
+      background: linear-gradient(180deg, rgba(248, 237, 227, 0.9), rgba(255, 255, 255, 0.85));
       border: 1px solid var(--brown-light);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
     }
 
     .hero-inner {
@@ -73,7 +78,7 @@
       align-items: center;
       gap: 8px;
       padding: 10px 16px;
-      border-radius: 10px;
+      border-radius: 0px;
       text-decoration: none;
       font-weight: 600;
       cursor: pointer;
@@ -180,6 +185,11 @@
       border: 1px solid var(--brown-light);
     }
 
+    .contact-card p a{
+      color: var(--brown);
+      text-decoration: underline;
+    }
+
     .testimonials {
       max-width: 1200px;
       margin: 0 auto 80px;
@@ -204,17 +214,33 @@
 
     /* Responsive tweaks */
     @media (max-width: 980px) {
-      .grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 720px) {
-      .about-hero { margin: 18px 12px; padding: 20px; }
-      .grid { grid-template-columns: 1fr; padding: 0 12px; }
-      .hero-inner { gap: 12px; }
-      .hero-right { order: -1; }
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
+    @media (max-width: 720px) {
+      .about-hero {
+        margin: 18px 12px;
+        padding: 20px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+        padding: 0 12px;
+      }
+
+      .hero-inner {
+        gap: 12px;
+      }
+
+      .hero-right {
+        order: -1;
+      }
+    }
   </style>
 </head>
+
 <body>
   <!-- header placeholder (you asked this to be present) -->
   <div id="header"></div>
@@ -223,16 +249,20 @@
   <main class="about-hero" role="main" aria-labelledby="about-title">
     <div class="hero-inner">
       <div class="hero-left">
-        <h1 id="about-title">About YourShop — Bulk, Bargains & Care</h1>
+        <h1 id="about-title">About Prime Liquidator — Bulk, Bargains & Care</h1>
         <p class="lead">
-          At <strong>YourShop</strong> we specialise in supplying high-value items in bulk — new, used and everything in-between.
-          Whether you're a small retailer restocking shelves, a school buying toys for events, or a household searching for
+          At <strong>YourShop</strong> we specialise in supplying high-value items in bulk — new, used and everything
+          in-between.
+          Whether you're a small retailer restocking shelves, a school buying toys for events, or a household searching
+          for
           great-condition secondhand goods, we have a steady supply at competitive prices.
         </p>
 
         <p class="lead" style="margin-top:6px;">
-          We combine curated new products with responsibly-sourced used items and clearance lots. Our philosophy is simple:
-          reliable stock, fair prices and friendly, local service. We handle volume orders and single-item requests — and we
+          We combine curated new products with responsibly-sourced used items and clearance lots. Our philosophy is
+          simple:
+          reliable stock, fair prices and friendly, local service. We handle volume orders and single-item requests —
+          and we
           always aim to make buying simple and dependable.
         </p>
 
@@ -262,24 +292,30 @@
     <article class="card">
       <h3>Bulk Supply & Wholesale</h3>
       <p>
-        We maintain connections with wholesalers and distributors so we can source large quantities quickly and at scale.
-        Our team can put together pallet offers, mixed lots, or repeat weekly shipments for retailers and institutional buyers.
+        We maintain connections with wholesalers and distributors so we can source large quantities quickly and at
+        scale.
+        Our team can put together pallet offers, mixed lots, or repeat weekly shipments for retailers and institutional
+        buyers.
       </p>
     </article>
 
     <article class="card">
       <h3>Curated Used & Refurbished Goods</h3>
       <p>
-        Our used items are inspected and curated. Toys, homeware and electronics are graded and described transparently so
-        you know what to expect. We prioritise re-use — keeping good products in circulation and saving our customers money.
+        Our used items are inspected and curated. Toys, homeware and electronics are graded and described transparently
+        so
+        you know what to expect. We prioritise re-use — keeping good products in circulation and saving our customers
+        money.
       </p>
     </article>
 
     <article class="card">
       <h3>Fast Delivery & Reliable Support</h3>
       <p>
-        Home delivery services can be scheduled to suit your needs. For bulk shipments we partner with trusted carriers; for
-        local deliveries we provide tracking and doorstep handoff. Questions? Message us — we'll walk you through options.
+        Home delivery services can be scheduled to suit your needs. For bulk shipments we partner with trusted carriers;
+        for
+        local deliveries we provide tracking and doorstep handoff. Questions? Message us — we'll walk you through
+        options.
       </p>
     </article>
   </section>
@@ -290,17 +326,22 @@
       <div class="card">
         <h3>Why customers buy from us</h3>
         <p>
-          People choose YourShop because we combine wholesale pricing with real-world service. We don't hide condition details,
-          we photograph and list items accurately, and we respond to messages promptly. Whether you're buying toys for a large
-          event, discounted items for resale, or just a single part, you'll get honest information and the support to finish the order.
+          People choose YourShop because we combine wholesale pricing with real-world service. We don't hide condition
+          details,
+          we photograph and list items accurately, and we respond to messages promptly. Whether you're buying toys for a
+          large
+          event, discounted items for resale, or just a single part, you'll get honest information and the support to
+          finish the order.
         </p>
       </div>
 
       <div class="card">
         <h3>Sustainability & Responsibility</h3>
         <p>
-          Re-selling and re-using goods reduces waste. We carefully grade secondhand items and divert usable products from
-          landfill. For certain product classes we also offer refurbishment and testing so that used electronics and toys are
+          Re-selling and re-using goods reduces waste. We carefully grade secondhand items and divert usable products
+          from
+          landfill. For certain product classes we also offer refurbishment and testing so that used electronics and
+          toys are
           safe and ready for their next home.
         </p>
       </div>
@@ -310,7 +351,8 @@
         <ol style="padding-left:18px; line-height:1.6;">
           <li>Message or call us to request stock or a quote — share quantities & preferred delivery window.</li>
           <li>We confirm availability, give a bulk or retail price, and propose delivery or pickup options.</li>
-          <li>Pay online, via bank transfer, or on delivery (where available). We then prepare and dispatch your order.</li>
+          <li>Pay online, via bank transfer, or on delivery (where available). We then prepare and dispatch your order.
+          </li>
           <li>We follow up to ensure the delivery arrived and that you're satisfied with the order.</li>
         </ol>
       </div>
@@ -325,8 +367,10 @@
         For quick responses message us on WhatsApp or call — we usually reply within the same business day.
       </p>
       <p style="margin-bottom:8px;"><strong>Phone / WhatsApp:</strong> <a href="tel:15307659545">+15307659545</a></p>
-      <p style="margin-bottom:8px;"><strong>Email:</strong> <a href="mailto:liquidatorsprime2@gmail.com">liquidatorsprime2@gmail.com</a></p>
-      <p style="margin-bottom:8px;"><strong>Address (pickup):</strong> 120 N Main Cross St, Louisa KY 41230, United States</p>
+      <p style="margin-bottom:8px;"><strong>Email:</strong> <a
+          href="mailto:liquidatorsprime2@gmail.com">liquidatorsprime2@gmail.com</a></p>
+      <p style="margin-bottom:8px;"><strong>Address (pickup):</strong> 120 N Main Cross St, Louisa KY 41230,
+        United States</p>
 
       <div style="margin-top:12px; display:flex; gap:10px;">
         <a class="btn btn-primary" href="tel:+15307659545">Call Now</a>
@@ -358,17 +402,20 @@
 
     <div class="testimonial">
       <strong>Priya — Event organiser</strong>
-      <p style="margin:6px 0 0;">"We ordered 300 toys for a community giveaway. Everything arrived on time and in great condition. The team helped arrange a staged delivery to the venue."</p>
+      <p style="margin:6px 0 0;">"We ordered 300 toys for a community giveaway. Everything arrived on time and in great
+        condition. The team helped arrange a staged delivery to the venue."</p>
     </div>
 
     <div class="testimonial">
       <strong>Rahul — Retailer</strong>
-      <p style="margin:6px 0 0;">"Good wholesale prices and reliable stock updates. Their used-good grading is honest — saved me a lot on display stock."</p>
+      <p style="margin:6px 0 0;">"Good wholesale prices and reliable stock updates. Their used-good grading is honest —
+        saved me a lot on display stock."</p>
     </div>
 
     <div class="testimonial">
       <strong>Sana — Home buyer</strong>
-      <p style="margin:6px 0 0;">"I bought gently used kitchen items and they were exactly as described. The delivery was smooth and the team was helpful on setup." </p>
+      <p style="margin:6px 0 0;">"I bought gently used kitchen items and they were exactly as described. The delivery
+        was smooth and the team was helpful on setup." </p>
     </div>
   </section>
 
@@ -383,7 +430,8 @@
 
     <div class="faq-item">
       <strong>How do you grade used items?</strong>
-      <p>Items are inspected and graded (Excellent / Good / Fair) with photos and condition notes. We describe any defects clearly.</p>
+      <p>Items are inspected and graded (Excellent / Good / Fair) with photos and condition notes. We describe any
+        defects clearly.</p>
     </div>
 
     <div class="faq-item">
@@ -397,32 +445,15 @@
     </div>
   </section>
 
-  <footer class="site-footer">
-    <div style="max-width:1200px; margin:0 auto; padding:0 20px; display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap;">
-      <div>
-        <h3 style="font-family:Georgia, serif; margin-bottom:6px;">YourShop</h3>
-        <p style="margin:0 0 6px 0;">Bulk supplies — new & used. Fast local delivery. Honest grading.</p>
-        <small>© <span id="year"></span> YourShop — All Rights Reserved</small>
-      </div>
+  <div id="footer"></div>
 
-      <div style="display:flex; gap:18px; align-items:center;">
-        <a href="shop.html" class="btn btn-outline">Shop</a>
-        <a href="contact.html" class="btn btn-outline">Contact</a>
-      </div>
-    </div>
-  </footer>
-
+  <script defer src="assets/js/main.js"></script>
+  <script defer src="assets/js/utils.js"></script>
   <script>
-    // small helpers
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // optional: smooth scroll to shop section if coming from CTA
     document.querySelectorAll('.btn-primary').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        // let default anchor work if present
-        // here we just allow link href to navigate
-      });
+      btn.addEventListener('click', (e) => { });
     });
   </script>
 </body>
+
 </html>

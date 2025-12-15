@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="fonts.googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem 1rem;
+            margin-top: 50px;
+        }
+
+        .contact-wrapper {
+            display: flex;
+            gap: 3rem;
+            max-width: 1000px;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .contact-left {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-left h1 {
+            font-size: 3rem;
+            color: var(--brown-dark);
+        }
+
+        .contact-left p {
+            font-size: 1.1rem;
+            color: var(--coffee);
+        }
+
+        .contact-option {
+            background-color: var(--bg);
+            padding: 1rem;
+            border-radius: 0px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-option:hover {
+            transform: translateY(-3px);
+        }
+
+        .contact-option h3 {
+            margin-bottom: 0.5rem;
+            color: var(--brown);
+        }
+
+        .contact-option p {
+            font-size: 0.95rem;
+            color: var(--coffee);
+        }
+
+        .contact-right {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--bg);
+            padding: 2rem;
+            border-radius: 0px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-right form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-right form .name-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .contact-right input,
+        .contact-right textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--brown-light);
+            border-radius: 0px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border 0.3s ease;
+        }
+
+        .contact-right input:focus,
+        .contact-right textarea:focus {
+            border-color: var(--caramel);
+            outline: none;
+        }
+
+        .contact-right button {
+            background-color: var(--brown);
+            color: var(--cream);
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 0px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            align-self: flex-start;
+        }
+
+        .contact-right button:hover {
+            background-color: var(--brown-dark);
+            transform: scale(1.05);
+        }
+
+        .privacy-note {
+            font-size: 0.85rem;
+            color: var(--coffee);
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+
+        .privacy-note a {
+            color: var(--caramel);
+            text-decoration: none;
+        }
+
+        .privacy-note a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 900px) {
+            .contact-wrapper {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="header"></div>
+
+    <main>
+        <div class="contact-wrapper">
+            <!-- LEFT SIDE -->
+            <div class="contact-left">
+                <h1>Contact Us</h1>
+                <p>We’d love to hear from you! Reach out using any of the methods below or send us a message through the
+                    form.</p>
+
+                <div class="contact-option">
+                    <h3>Email</h3>
+                    <p>support@mybusiness.com</p>
+                </div>
+                <div class="contact-option">
+                    <h3>Phone</h3>
+                    <p>+91 12345 67890</p>
+                </div>
+                <div class="contact-option">
+                    <h3>Address</h3>
+                    <p>123 Main Street, City, Country</p>
+                </div>
+                <div class="contact-option">
+                    <h3>Live Chat</h3>
+                    <p>Chat with our support team instantly.</p>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="contact-right">
+                <form>
+                    <div class="name-row">
+                        <input type="text" placeholder="First Name" required>
+                        <input type="text" placeholder="Last Name" required>
+                    </div>
+                    <input type="email" placeholder="Email" required>
+                    <textarea rows="5" placeholder="Message" required></textarea>
+                    <button type="submit">Send Message</button>
+                    <p class="privacy-note">
+                        Your information is safe with us. Read our <a href="#">Privacy Policy</a>.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer"></div>
+
+    <script defer src="assets/js/main.js"></script>
+    <script defer src="assets/js/utils.js"></script>
+</body>
+
+</html>

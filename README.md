@@ -1,2 +1,2 @@
 # LiquiDator
-Liquidato Online Shopping App
+Prime Liquidator Online Shopping App

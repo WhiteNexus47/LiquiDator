@@ -8,9 +8,6 @@
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="assets/css/main.css">
-    <script defer src="assets/js/utils.js"></script>
-    <script defer src="assets/js/main.js"></script>
-    <script defer src="assets/js/products.js"></script>
 </head>
 
 <body>
@@ -22,7 +19,7 @@
         <div class="slide" style="background-image: url('assets/img/home2.jpg');"></div>
         <div class="slide" style="background-image: url('assets/img/home3.jpg');"></div>
         <div class="hero-overlay">
-            <h1 class="hero-title">LiquiDator</h1>
+            <h1 class="hero-title"> Prime Liquidators</h1>
             <p class="hero-sub">
                 Discover thoughtfully crafted pieces designed to bring comfort, style,
                 and timeless warmth to your everyday living. Handpicked with love,
@@ -39,41 +36,55 @@
         <button class="slide-arrow right">&#10095;</button>
     </section>
 
-    <section class="why-choose">
-        <h2>Why Choose LiquiDator</h2>
-
-        <div class="why-grid">
-            <div class="why-item">
-                <i class="fa-solid fa-check"></i>
-                <h4>Quality Checked</h4>
-                <p>Every product is inspected to ensure reliability and consistency.</p>
-            </div>
-
-            <div class="why-item">
-                <i class="fa-solid fa-boxes-stacked"></i>
-                <h4>Flexible Orders</h4>
-                <p>Order single items or bulk quantities with confidence.</p>
-            </div>
-
-            <div class="why-item">
-                <i class="fa-solid fa-truck"></i>
-                <h4>Nationwide Delivery</h4>
-                <p>Secure packaging and dependable shipping across regions.</p>
-            </div>
-
-            <div class="why-item">
-                <i class="fa-solid fa-shield"></i>
-                <h4>Trusted & Transparent</h4>
-                <p>Clear pricing, honest listings, and responsive support.</p>
-            </div>
-        </div>
-    </section>
-
     <section class="latest-products">
         <h2>Latest Products</h2>
         <div class="latest-wrapper">
             <div id="latestList" class="product-grid"></div>
             <a href="shop.html" class="view-more-btn">View More</a>
+        </div>
+    </section>
+
+    <section class="Why-Us">
+        <div class="why-choose">
+            <h2>Why Choose Prime Liquidator</h2>
+
+            <div class="why-grid">
+                <div class="why-item">
+                    <i class="fa-solid fa-check"></i>
+                    <h4>Quality Checked</h4>
+                    <p>Every product is inspected to ensure reliability and consistency.</p>
+                </div>
+
+                <div class="why-item">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    <h4>Flexible Orders</h4>
+                    <p>Order single items or bulk quantities with confidence.</p>
+                </div>
+
+                <div class="why-item">
+                    <i class="fa-solid fa-truck"></i>
+                    <h4>Worldwide Delivery</h4>
+                    <p>Secure packaging and dependable shipping across regions.</p>
+                </div>
+
+                <div class="why-item">
+                    <i class="fa-solid fa-shield"></i>
+                    <h4>Trusted & Transparent</h4>
+                    <p>Clear pricing, honest listings, and responsive support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-us">
+        <div class="overlay">
+            <h2>Contact Us</h2>
+            <p>We’d love to hear from you. Whether you have questions about our products, need support with an order, or
+                are interested in exploring new opportunities for collaboration, our team is here to help. Your feedback
+                and inquiries are important to us, and we’re committed to providing clear answers, dependable
+                assistance, and a friendly experience every step of the way. Reach out today and let’s start the
+                conversation.</p>
+            <a href="contact.html" class="contact-btn">Get in Touch</a>
         </div>
     </section>
 
@@ -85,6 +96,21 @@
     </div>
 
     <div id="footer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const SUPABASE_URL = "https://vxzwgznxhrzeumzovogw.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ4endnem54aHJ6ZXVtem92b2d3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU4MDk3MjksImV4cCI6MjA4MTM4NTcyOX0._nQrezTAs8ibg0Dcvz_pCYa04kvH-daRk_d9UH9G74Y";
+
+        window.supabase = supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_ANON_KEY
+        );
+    </script>
+    <script defer src="assets/js/utils.js"></script>
+    <script defer src="assets/js/main.js"></script>
+    <script defer src="assets/js/products.js"></script>
+
 </body>
 
 </html>

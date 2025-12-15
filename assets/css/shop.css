@@ -124,7 +124,7 @@ body {
     border: none;
     background: var(--brown);
     color: white;
-    border-radius: 8px;
+    border-radius: 0px;
     font-size: 0.9rem;
     font-weight: 600;
     display: flex;
@@ -273,7 +273,7 @@ body {
     padding: 10px;
     background: var(--brown);
     color: white;
-    border-radius: 8px;
+    border-radius: 0px;
     border: none;
     cursor: pointer;
     font-weight: 600;
@@ -352,7 +352,7 @@ body {
     padding: 8px 14px;
     background: var(--brown);
     color: white;
-    border-radius: 6px;
+    border-radius: 0px;
     border: none;
     cursor: pointer;
 }
@@ -400,8 +400,7 @@ body {
         width: 42px;
         height: 42px;
         border-radius: 50%;
-        background: var(--brown);
-        color: #fff;
+        color: var(--brown);
         font-size: 1.6rem;
         position: absolute;
         top: 20px;
@@ -412,7 +411,7 @@ body {
     }
 
     .sidebar-close-btn:hover {
-        background: var(--caramel);
+        background: #f3d8bf;
     }
 
     #openSidebarBtn {
@@ -422,7 +421,7 @@ body {
         padding: 10px 14px;
         margin: 10px;
         margin-top: 50px;
-        border-radius: 8px;
+        border-radius: 0px;
         cursor: pointer;
         font-weight: 600;
         text-align: center;

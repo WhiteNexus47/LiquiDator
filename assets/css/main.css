@@ -1,9 +1,11 @@
+@import url('fonts.googleapis.com');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
-    font-family: "Inter", sans-serif;
+    font-family: "Times New Roman", Times, serif;
     scrollbar-width: none;
 }
 
@@ -61,14 +63,14 @@ header.scrolled {
 .nav-desktop {
     display: flex;
     gap: 30px;
+    font-family: 'Roboto', sans-serif;
 }
 
 .nav-desktop a {
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 600;
     color: var(--brown);
-    font-family: "Arial", sans-serif;
     padding-bottom: 4px;
     transition: 0.2s ease-in-out;
 }
@@ -270,7 +272,6 @@ header.scrolled {
     background: var(--brown-light);
     color: var(--brown-dark);
     padding: 50px 0 20px;
-    margin-top: 70px;
 }
 
 .footer-container {
@@ -461,7 +462,7 @@ header.scrolled {
     color: #fff;
     font-size: 1rem;
     text-decoration: none;
-    border-radius: 6px;
+    border-radius: 0px;
     transition: 0.3s;
 }
 
@@ -550,13 +551,12 @@ header.scrolled {
 
 .latest-products h2 {
     text-align: center;
-    font-size: 2rem;
+    font-size: 4rem;
     color: var(--brown);
     margin-bottom: 25px;
 }
 
 .latest-wrapper {
-    background: var(--cream-light);
     border-radius: 12px;
     padding: 40px;
     max-width: 1200px;
@@ -615,7 +615,7 @@ header.scrolled {
 
 .product-card {
     background: transparent;
-    border-radius: 10px;
+    border-radius: 0px;
     padding: 0;
     text-align: center;
     display: flex;
@@ -655,11 +655,15 @@ header.scrolled {
     padding: 12px;
 }
 
+.product-card .p-name {
+    font-size: 16px;
+    font-weight: 200;
+}
+
 .p-rating-box {
-    position: absolute;
     bottom: 8px;
     left: 8px;
-    background: rgba(241, 209, 209, 0.55);
+    background: rgba(221, 218, 218, 0.55);
     backdrop-filter: blur(3px);
     color: rgb(0, 0, 0);
     padding: 4px 10px;
@@ -736,7 +740,7 @@ header.scrolled {
     background: rgba(255, 255, 255, 0.604);
     border: none;
     padding: 6px 7px;
-    border-radius: 8px;
+    border-radius: 0px;
     cursor: pointer;
     backdrop-filter: blur(4px);
     transition: background 0.25s ease, transform 0.2s ease;
@@ -777,8 +781,9 @@ header.scrolled {
     padding: 10px 12px;
     background: var(--brown);
     color: #fff;
+    width: fit-content;
     text-decoration: none;
-    border-radius: 6px;
+    border-radius: 0px;
     font-size: 0.85rem;
     font-weight: 600;
     border: none;
@@ -804,7 +809,7 @@ header.scrolled {
     padding: 12px 30px;
     background: var(--brown);
     border: none;
-    border-radius: 8px;
+    border-radius: 0px;
     color: white;
     font-size: 1rem;
     cursor: pointer;
@@ -821,6 +826,13 @@ header.scrolled {
 /* ============================================
    WHY CHOOSE US (HOME)
 ============================================ */
+.Why-Us {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    background: #f5eee2;
+}
 
 .why-choose {
     max-width: 1200px;
@@ -897,4 +909,47 @@ header.scrolled {
     .why-item {
         padding: 20px 16px;
     }
+}
+
+.contact-us {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;       /* vertical centering */
+    justify-content: center;   /* horizontal centering */
+}
+
+.contact-us .overlay {
+    background: var(--bg);
+    text-align: center;
+    padding: 60px 20px;
+    max-width: 1200px;
+}
+
+.contact-us .overlay h2 {
+    font-size: 70px;
+    color: var(--brown);
+    margin-bottom: 20px;
+}
+
+.contact-us .overlay p {
+    max-width: 900px;
+    margin: 0 auto 30px;   /* center paragraph + spacing */
+    line-height: 1.6;
+    font-size: 18px;
+}
+
+.contact-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: var(--caramel);
+    color: #fff;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 0;
+    transition: 0.3s ease;
+}
+
+.contact-btn:hover {
+    background: #8a6a4e;
 }

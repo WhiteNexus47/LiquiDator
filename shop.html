@@ -10,10 +10,8 @@
     <link rel="stylesheet" href="assets/css/shop.css">
 
     <style>
-        #header {
-            position: relative;
-            z-index: 100;
-        }
+        /* Removed #header z-index override so the loaded header's
+           fixed positioning and stacking behave correctly. */
 
         .shop-controls-wrapper {
             position: relative;
@@ -120,7 +118,16 @@
             <div id="pagination" class="pagination"></div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const SUPABASE_URL = "https://vxzwgznxhrzeumzovogw.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ4endnem54aHJ6ZXVtem92b2d3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU4MDk3MjksImV4cCI6MjA4MTM4NTcyOX0._nQrezTAs8ibg0Dcvz_pCYa04kvH-daRk_d9UH9G74Y";
 
+        window.supabase = supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_ANON_KEY
+        );
+    </script>
     <script defer src="assets/js/utils.js"></script>
     <script defer src="assets/js/main.js"></script>
     <script defer src="assets/js/pagination.js"></script>

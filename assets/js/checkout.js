@@ -1,12 +1,14 @@
 // ============================
-// CHECKOUT PAGE SCRIPT
+// CHECKOUT PAGE SCRIPT (FINAL)
 // ============================
+
 let pendingOrder = null;
-// Form element refs (populated on DOMContentLoaded)
+let loadingTimeout = null;
+
+// Form refs
 let cFirstName, cLastName, cEmail, cStreet, cCity, cZip, cCountry, cAdditional;
 
 window.addEventListener("DOMContentLoaded", () => {
-  // Cache form elements
   cFirstName = document.getElementById("cFirstName");
   cLastName = document.getElementById("cLastName");
   cEmail = document.getElementById("cEmail");
@@ -16,40 +18,47 @@ window.addEventListener("DOMContentLoaded", () => {
   cCountry = document.getElementById("cCountry");
   cAdditional = document.getElementById("cAdditional");
 
-  // Re-render when cart changes (other pages may update localStorage)
-  window.addEventListener("cartUpdated", () => {
-    renderCheckoutItems();
-    updateTotal();
-  });
-  window.addEventListener("storage", (e) => {
-    if (e.key === "cart") {
-      renderCheckoutItems();
-      updateTotal();
-    }
-  });
   renderCheckoutItems();
   updateTotal();
-  updateCartBadge();
+  if (typeof updateCartBadge === "function") {
+    updateCartBadge();
+  }
+  hideLoading();
+  disableCheckoutButtons(false);
 
   document.getElementById("placeOrderBtn").addEventListener("click", openModal);
 
-  document
-    .getElementById("sendEmailBtn")
-    .addEventListener("click", () => sendOrder("email"));
+  document.getElementById("sendEmailBtn").addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    sendOrder("email");
+  });
 
-  document
-    .getElementById("sendWhatsappBtn")
-    .addEventListener("click", () => sendOrder("whatsapp"));
+  document.getElementById("sendWhatsappBtn").addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    sendOrder("whatsapp");
+  });
 });
 
 // ----------------------------
 // Modal helpers
 // ----------------------------
-function openModal() {
-  const order = buildOrderPayload();
+async function openModal() {
+  // HARD STOP: do not proceed if validation fails
+  const order = await buildOrderPayload();
   if (!order) return;
 
+  console.log("openModal: built order", order);
+
+  const ok = await uiConfirm(
+    "Do you want to place this order and proceed?",
+    "Confirm Order"
+  );
+  if (!ok) return;
+
   pendingOrder = order;
+  console.log("openModal: pendingOrder set", pendingOrder);
   document.getElementById("messageModal").classList.remove("hidden");
 }
 
@@ -66,11 +75,10 @@ function getCart() {
 
 function renderCheckoutItems() {
   const container = document.getElementById("checkoutItems");
-  if (!container) return;
-
   const cart = getCart();
+
   if (!cart.length) {
-    container.innerHTML = `<p class='empty'>Your cart is empty.</p>`;
+    container.innerHTML = `<p class="empty">Your cart is empty.</p>`;
     return;
   }
 
@@ -79,7 +87,7 @@ function renderCheckoutItems() {
       (item) => `
       <div class="checkout-row">
         <div class="img-box">
-          <img src="${item.image}" alt="${item.name}"/>
+          <img src="${item.image}" alt="${item.name}">
           <span class="count">${item.qty}</span>
         </div>
         <div class="checkout-info">
@@ -95,16 +103,15 @@ function renderCheckoutItems() {
 
 function updateTotal() {
   const totalEl = document.getElementById("checkoutTotal");
-  if (!totalEl) return;
   const cart = getCart();
   const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
-  totalEl.textContent = total;
+  totalEl.textContent = total.toFixed(2);
 }
 
 // ----------------------------
 // Build order payload
 // ----------------------------
-function buildOrderPayload() {
+async function buildOrderPayload() {
   const first = cFirstName.value.trim();
   const last = cLastName.value.trim();
   const email = cEmail.value.trim();
@@ -114,99 +121,243 @@ function buildOrderPayload() {
   const country = cCountry.value.trim();
   const additional = cAdditional.value.trim();
 
-  if (!first || !last || !email || !street || !city || !zip) {
-    alert("Please fill all required fields.");
+  const paymentMethod = document.querySelector(
+    'input[name="paymentMethod"]:checked'
+  )?.value;
+
+  if (!first || !last || !email || !street || !city || !zip || !country) {
+    await uiAlert("Please fill all required fields.");
+    return null;
+  }
+
+  if (!paymentMethod) {
+    await uiAlert("Please select a payment method.");
     return null;
   }
 
   const cart = getCart();
   if (!cart.length) {
-    alert("Your cart is empty.");
+    await uiAlert("Your cart is empty.");
     return null;
   }
 
   const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
 
   return {
+    orderId: "LD-" + Date.now(),
+    date: new Date().toLocaleString(),
+    currency: "USD",
     customer: {
       name: `${first} ${last}`,
       email,
     },
     address:
-      `${street}, ${city} ${zip}, ${country}` +
+      `${street}, ${city}, ${zip}, ${country}` +
       (additional ? ` — ${additional}` : ""),
+    paymentMethod,
     items: cart.map((i) => ({
       name: i.name,
       qty: i.qty,
       price: i.price,
-      image: i.image,
     })),
-    total,
+    total: total.toFixed(2),
   };
 }
 
 // ----------------------------
-// Send order to backend
+// Canonical order message
+// ----------------------------
+function buildOrderMessage(order) {
+  const itemLines = order.items
+    .map((i) => `- ${i.name} × ${i.qty} = $${(i.price * i.qty).toFixed(2)}`)
+    .join("\n");
+
+  return `
+==============================
+NEW ORDER – Prime Liquidator
+==============================
+
+Order ID: ${order.orderId}
+Order Date: ${order.date}
+
+--------------------------------
+CUSTOMER DETAILS
+--------------------------------
+Name   : ${order.customer.name}
+Email  : ${order.customer.email}
+
+--------------------------------
+DELIVERY ADDRESS
+--------------------------------
+${order.address}
+
+--------------------------------
+PAYMENT METHOD
+--------------------------------
+${order.paymentMethod}
+
+--------------------------------
+ORDER ITEMS
+--------------------------------
+${itemLines}
+
+--------------------------------
+ORDER TOTAL
+--------------------------------
+TOTAL : $${order.total}
+
+--------------------------------
+STATUS
+--------------------------------
+Payment pending – order will be confirmed after verification
+`.trim();
+}
+
+// ----------------------------
+// Send order
 // ----------------------------
 async function sendOrder(channel) {
-  if (!pendingOrder) return;
+  console.log("sendOrder called", channel, "pendingOrder:", pendingOrder);
+
+  // If pendingOrder is missing (e.g. something cleared it), try to rebuild
+  // the payload from the form so the user action still works.
+  let order = pendingOrder;
+  if (!order) {
+    order = await buildOrderPayload();
+    if (!order) {
+      await uiAlert(
+        "Order information is missing. Please complete the form and try again."
+      );
+      return;
+    }
+    pendingOrder = order;
+  }
 
   closeModal();
+  disableCheckoutButtons(true);
+  showLoading();
+
+  const message = buildOrderMessage(order);
 
   try {
-    const res = await fetch("/.netlify/functions/send_order", {
+    const endpoint =
+      channel === "email"
+        ? "/.netlify/functions/send_email"
+        : "/.netlify/functions/send_whatsapp";
+
+    const res = await fetch(endpoint, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        ...pendingOrder,
-        channel,
+        order: pendingOrder,
+        message,
       }),
     });
 
-    if (!res.ok) throw new Error("Order request failed");
-
-    const data = await res.json();
-
-    alert(`Order placed successfully!\nOrder ID: ${data.orderId}`);
+    if (!res.ok) throw new Error("Backend failed");
 
     localStorage.removeItem("cart");
     window.location.href = "thankyou.html";
   } catch (err) {
-    console.error(err);
+    console.warn("Backend failed, using fallback", err);
+    hideLoading();
+
+    await uiAlert(
+      "Automatic sending failed. We’ll open a manual option so your order is not lost.",
+      "Manual Send"
+    );
 
     if (channel === "whatsapp") {
-      const msg = buildWhatsAppFallbackMessage(pendingOrder);
-      const number = "15307659545"; // business number
-      const waUrl = `https://wa.me/${number}?text=${msg}`;
-
-      alert(
-        "Automatic WhatsApp sending failed.\nOpening WhatsApp so you can send the order manually."
+      const phone = "919205513709";
+      window.open(
+        `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+        "_blank"
       );
-
-      window.open(waUrl, "_blank");
-      return;
+    } else {
+      window.location.href =
+        `mailto:whitenexushat@gmail.com?subject=` +
+        encodeURIComponent(`New Order ${pendingOrder.orderId}`) +
+        `&body=` +
+        encodeURIComponent(message);
     }
 
-    alert("Failed to send order. Please try again.");
+    disableCheckoutButtons(false);
   }
 }
 
-function buildWhatsAppFallbackMessage(order) {
-  const lines = [
-    "🛒 New Order",
-    `Name: ${order.customer.name}`,
-    `Email: ${order.customer.email}`,
-    `Address: ${order.address}`,
-    "",
-    "Items:",
-  ];
+function uiAlert(message, title = "Notice") {
+  return new Promise((resolve) => {
+    const modal = document.getElementById("uiModal");
+    document.getElementById("uiModalTitle").textContent = title;
+    document.getElementById("uiModalMessage").textContent = message;
 
-  order.items.forEach((i) => {
-    lines.push(`• ${i.name} × ${i.qty} = $${i.price * i.qty}`);
+    const confirmBtn = document.getElementById("uiConfirmBtn");
+    const cancelBtn = document.getElementById("uiCancelBtn");
+
+    cancelBtn.style.display = "none";
+    confirmBtn.textContent = "OK";
+
+    modal.classList.remove("hidden");
+
+    confirmBtn.onclick = () => {
+      modal.classList.add("hidden");
+      resolve();
+    };
   });
+}
 
-  lines.push("");
-  lines.push(`Total: $${order.total}`);
+function uiConfirm(message, title = "Confirm") {
+  return new Promise((resolve) => {
+    const modal = document.getElementById("uiModal");
+    document.getElementById("uiModalTitle").textContent = title;
+    document.getElementById("uiModalMessage").textContent = message;
 
-  return encodeURIComponent(lines.join("\n"));
+    const confirmBtn = document.getElementById("uiConfirmBtn");
+    const cancelBtn = document.getElementById("uiCancelBtn");
+
+    cancelBtn.style.display = "block";
+    confirmBtn.textContent = "Confirm";
+
+    modal.classList.remove("hidden");
+
+    confirmBtn.onclick = () => {
+      modal.classList.add("hidden");
+      resolve(true);
+    };
+
+    cancelBtn.onclick = () => {
+      modal.classList.add("hidden");
+      resolve(false);
+    };
+  });
+}
+
+function showLoading() {
+  const overlay = document.getElementById("loadingOverlay");
+  const cancelBtn = document.getElementById("loadingCancelBtn");
+  const text = document.getElementById("loadingText");
+
+  cancelBtn.classList.add("hidden");
+  text.textContent = "Processing your order…";
+
+  overlay.classList.remove("hidden");
+
+  // After 10 seconds, allow escape
+  loadingTimeout = setTimeout(() => {
+    text.textContent = "This is taking longer than expected.";
+    cancelBtn.classList.remove("hidden");
+  }, 10000);
+}
+
+function hideLoading() {
+  clearTimeout(loadingTimeout);
+  loadingTimeout = null;
+
+  document.getElementById("loadingOverlay").classList.add("hidden");
+}
+
+function disableCheckoutButtons(disabled = true) {
+  document.getElementById("placeOrderBtn").disabled = disabled;
+  document.getElementById("sendEmailBtn").disabled = disabled;
+  document.getElementById("sendWhatsappBtn").disabled = disabled;
 }

@@ -5,12 +5,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Product Page</title>
-  <link rel="stylesheet" href="assets/css/main.css" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link href="fonts.googleapis.com" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/product.css" />
-  <link href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css" rel="stylesheet" />
-  <script defer src="assets/js/utils.js"></script>
-  <script defer src="assets/js/main.js"></script>
-  <script defer src="assets/js/products.js"></script>
 </head>
 
 <body>
@@ -25,7 +24,11 @@
         </button>
         <div id="ratingBox" class="p-rating-box"></div>
       </div>
-      <div id="variantList" class="variant-list"></div>
+      <div class="variant-wrapper">
+        <button class="variant-nav prev">‹</button>
+        <div id="variantList" class="variant-list"></div>
+        <button class="variant-nav next">›</button>
+      </div>
     </div>
 
     <div class="product-info">
@@ -44,15 +47,62 @@
     </div>
   </section>
 
+  <section class="reviews-section">
+    <h2>Customer Reviews</h2>
+    <div class="reviews-summary">
+      <span class="avg-rating">4.6 ★</span>
+      <span class="review-count">Based on 23 reviews</span>
+    </div>
+    <div id="reviewsList" class="reviews-list">
+      <!-- reviews injected here -->
+    </div>
+
+    <div class="add-review">
+      <h3>Add a review</h3>
+      <p class="note">Your email will not be published.</p>
+
+      <form id="reviewForm">
+        <div class="star-input" id="starInput"></div>
+
+        <textarea id="reviewText" placeholder="Write your review…" required></textarea>
+
+        <div class="review-fields">
+          <input type="text" id="reviewName" placeholder="Name *" required />
+          <input type="email" id="reviewEmail" placeholder="Email *" required />
+        </div>
+
+        <button type="submit">Submit Review</button>
+      </form>
+    </div>
+  </section>
+
   <section class="similar-products">
     <h2>Similar Products</h2>
     <div id="similarList" class="product-grid"></div>
   </section>
-
-  <!-- Mobile sticky add-to-cart bar -->
   <div class="mobile-cart-bar" aria-hidden="false">
     <button id="mobileCartBtn" class="mobile-cart-btn">Add to Cart</button>
   </div>
+  <!-- FULLSCREEN IMAGE VIEWER -->
+  <div id="imageModal" class="image-modal">
+    <button class="image-close">×</button>
+    <img id="modalImage" alt="Full Image" />
+  </div>
+  <div id="footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = "https://vxzwgznxhrzeumzovogw.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ4endnem54aHJ6ZXVtem92b2d3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU4MDk3MjksImV4cCI6MjA4MTM4NTcyOX0._nQrezTAs8ibg0Dcvz_pCYa04kvH-daRk_d9UH9G74Y";
+
+    window.supabase = supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    );
+  </script>
+  <script defer src="assets/js/utils.js"></script>
+  <script defer src="assets/js/main.js"></script>
+  <script defer src="assets/js/products.js"></script>
 
 </body>
 

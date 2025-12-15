@@ -18,6 +18,12 @@
   padding: 20px;
 }
 
+.cart-page h1 {
+  margin-bottom: 10px;
+  color: var(--brown);
+  text-align: center;
+}
+
 .cart-container {
   display: flex;
   flex-direction: column;
@@ -147,7 +153,7 @@
   padding: 12px;
   margin-top: 20px;
   border: none;
-  border-radius: 8px;
+  border-radius: 0px;
   background: var(--brown);
   color: white;
   font-size: 1.1rem;

@@ -71,7 +71,7 @@ function updateSummary() {
   const cart = getCart();
   let price = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
-  let delivery = price >= 1000 ? 0 : cart.length > 0 ? 49 : 0;
+  let delivery = price >= 1000 ? 0 : cart.length > 0 ? 15 : 0;
   let unlockAmount = price >= 1000 ? 0 : 1000 - price;
 
   // ---- Progress bar percentage ----
