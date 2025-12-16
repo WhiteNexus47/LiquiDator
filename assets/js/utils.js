@@ -3,6 +3,29 @@ async function loadProducts() {
   return await response.json();
 }
 
+window.configReady = (async function () {
+  window.CONFIG = {
+    WHATSAPP_TO: "",
+    EMAIL_TO: "",
+    PHONE_TO: "",
+  };
+
+  try {
+    const res = await fetch("/.netlify/functions/get_config");
+    if (!res.ok) throw new Error("Config fetch failed");
+
+    const data = await res.json();
+
+    window.CONFIG = {
+      WHATSAPP_TO: data.whatsapp_to || "",
+      EMAIL_TO: data.email_to || "",
+      PHONE_TO: data.phone_to || "",
+    };
+  } catch (err) {
+    console.warn("Config load failed, using empty config", err);
+  }
+})();
+
 async function renderProducts(items, containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -173,7 +196,7 @@ async function addToCartById(id) {
   try {
     const list = await loadProducts();
     const item = list.find((p) => p.id == id);
-    if (!item) return alert("Product not found");
+    if (!item) alert("Product not found");
 
     if (typeof addToCart === "function") {
       addToCart(item);
@@ -323,3 +346,54 @@ window.addEventListener("reviewAdded", async (e) => {
     `;
   }
 });
+
+window.uiAlert = function (message, title = "Notice") {
+  return new Promise((resolve) => {
+    const modal = document.getElementById("uiModal");
+    if (!modal) return resolve();
+
+    document.getElementById("uiModalTitle").textContent = title;
+    document.getElementById("uiModalMessage").textContent = message;
+
+    const confirmBtn = document.getElementById("uiConfirmBtn");
+    const cancelBtn = document.getElementById("uiCancelBtn");
+
+    cancelBtn.style.display = "none";
+    confirmBtn.textContent = "OK";
+
+    modal.classList.remove("hidden");
+
+    confirmBtn.onclick = () => {
+      modal.classList.add("hidden");
+      resolve();
+    };
+  });
+};
+
+window.uiConfirm = function (message, title = "Confirm") {
+  return new Promise((resolve) => {
+    const modal = document.getElementById("uiModal");
+    if (!modal) return resolve(false);
+
+    document.getElementById("uiModalTitle").textContent = title;
+    document.getElementById("uiModalMessage").textContent = message;
+
+    const confirmBtn = document.getElementById("uiConfirmBtn");
+    const cancelBtn = document.getElementById("uiCancelBtn");
+
+    cancelBtn.style.display = "block";
+    confirmBtn.textContent = "Confirm";
+
+    modal.classList.remove("hidden");
+
+    confirmBtn.onclick = () => {
+      modal.classList.add("hidden");
+      resolve(true);
+    };
+
+    cancelBtn.onclick = () => {
+      modal.classList.add("hidden");
+      resolve(false);
+    };
+  });
+};

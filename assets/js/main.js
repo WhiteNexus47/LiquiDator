@@ -10,9 +10,25 @@ async function loadComponent(id, file) {
   el.innerHTML = html;
 }
 
+async function loadAlerts() {
+  if (document.getElementById("uiModal")) return;
+
+  try {
+    const res = await fetch("components/alert.html");
+    const html = await res.text();
+
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = html;
+    document.body.appendChild(wrapper);
+  } catch (err) {
+    console.warn("Failed to load alerts UI", err);
+  }
+}
+
 window.addEventListener("DOMContentLoaded", async () => {
   await loadComponent("header", "components/header.html");
   await loadComponent("footer", "components/footer.html");
+  await loadAlerts();
 
   initCartButton();
 
@@ -117,33 +133,10 @@ function initMenuToggle() {
 
   if (!menuBtn || !mobileMenu) return;
 
-  // Toggle open/close and update ARIA attributes
+  // Toggle open/close
   menuBtn.addEventListener("click", () => {
     menuBtn.classList.toggle("active");
-    const isOpen = menuBtn.classList.contains("active");
-    if (isOpen) {
-      mobileMenu.classList.add("open");
-      menuBtn.setAttribute("aria-expanded", "true");
-      mobileMenu.setAttribute("aria-hidden", "false");
-    } else {
-      mobileMenu.classList.remove("open");
-      menuBtn.setAttribute("aria-expanded", "false");
-      mobileMenu.setAttribute("aria-hidden", "true");
-    }
-  });
-
-  // Make toggle operable via keyboard
-  menuBtn.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      menuBtn.click();
-    }
-    if (e.key === "Escape") {
-      menuBtn.classList.remove("active");
-      mobileMenu.classList.remove("open");
-      menuBtn.setAttribute("aria-expanded", "false");
-      mobileMenu.setAttribute("aria-hidden", "true");
-    }
+    mobileMenu.classList.toggle("open");
   });
 
   // Close when clicking any link inside mobile menu
@@ -151,21 +144,7 @@ function initMenuToggle() {
     link.addEventListener("click", () => {
       menuBtn.classList.remove("active");
       mobileMenu.classList.remove("open");
-      menuBtn.setAttribute("aria-expanded", "false");
-      mobileMenu.setAttribute("aria-hidden", "true");
     });
-  });
-
-  // Close on outside clicks
-  document.addEventListener("click", (e) => {
-    if (!menuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
-      if (menuBtn.classList.contains("active")) {
-        menuBtn.classList.remove("active");
-        mobileMenu.classList.remove("open");
-        menuBtn.setAttribute("aria-expanded", "false");
-        mobileMenu.setAttribute("aria-hidden", "true");
-      }
-    }
   });
 }
 

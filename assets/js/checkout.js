@@ -1,14 +1,22 @@
 // ============================
 // CHECKOUT PAGE SCRIPT (FINAL)
 // ============================
-
+// Requires window.CONFIG to be loaded by main.js
 let pendingOrder = null;
 let loadingTimeout = null;
 
 // Form refs
 let cFirstName, cLastName, cEmail, cStreet, cCity, cZip, cCountry, cAdditional;
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", async () => {
+
+  if (window.configReady) {
+    await window.configReady;
+  }
+
+  // Absolute safety fallback
+  window.CONFIG = window.CONFIG || {};
+  
   cFirstName = document.getElementById("cFirstName");
   cLastName = document.getElementById("cLastName");
   cEmail = document.getElementById("cEmail");
@@ -17,23 +25,6 @@ window.addEventListener("DOMContentLoaded", () => {
   cZip = document.getElementById("cZip");
   cCountry = document.getElementById("cCountry");
   cAdditional = document.getElementById("cAdditional");
-
-  // Load public config (non-sensitive) for runtime fallbacks
-  // Default fallback number preserved as last-resort
-  window.WHATSAPP_TO = window.WHATSAPP_TO || "15307659545";
-  (async function loadPublicConfig() {
-    try {
-      const res = await fetch("/.netlify/functions/get_config");
-      if (res.ok) {
-        const data = await res.json();
-        if (data && data.whatsapp_to) {
-          window.WHATSAPP_TO = data.whatsapp_to;
-        }
-      }
-    } catch (err) {
-      console.warn("Could not load public config", err);
-    }
-  })();
 
   renderCheckoutItems();
   updateTotal();
@@ -285,66 +276,25 @@ async function sendOrder(channel) {
     );
 
     if (channel === "whatsapp") {
-      const phone = window.WHATSAPP_TO || "15307659545";
+      const phone = window.CONFIG?.WHATSAPP_TO || "15307659545";
       window.open(
         `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
         "_blank"
       );
     } else {
-      await uiAlert(
-        "Email sending failed. Please use WhatsApp to complete your order."
-      );
+      const email = window.CONFIG?.EMAIL_TO;
+      if (email) {
+        window.location.href = `mailto:${email}?subject=Order ${
+          pendingOrder.orderId
+        }&body=${encodeURIComponent(message)}`;
+      } else {
+        await uiAlert(
+          "Email sending failed. Please use WhatsApp to complete your order."
+        );
+      }
     }
-
     disableCheckoutButtons(false);
   }
-}
-
-function uiAlert(message, title = "Notice") {
-  return new Promise((resolve) => {
-    const modal = document.getElementById("uiModal");
-    document.getElementById("uiModalTitle").textContent = title;
-    document.getElementById("uiModalMessage").textContent = message;
-
-    const confirmBtn = document.getElementById("uiConfirmBtn");
-    const cancelBtn = document.getElementById("uiCancelBtn");
-
-    cancelBtn.style.display = "none";
-    confirmBtn.textContent = "OK";
-
-    modal.classList.remove("hidden");
-
-    confirmBtn.onclick = () => {
-      modal.classList.add("hidden");
-      resolve();
-    };
-  });
-}
-
-function uiConfirm(message, title = "Confirm") {
-  return new Promise((resolve) => {
-    const modal = document.getElementById("uiModal");
-    document.getElementById("uiModalTitle").textContent = title;
-    document.getElementById("uiModalMessage").textContent = message;
-
-    const confirmBtn = document.getElementById("uiConfirmBtn");
-    const cancelBtn = document.getElementById("uiCancelBtn");
-
-    cancelBtn.style.display = "block";
-    confirmBtn.textContent = "Confirm";
-
-    modal.classList.remove("hidden");
-
-    confirmBtn.onclick = () => {
-      modal.classList.add("hidden");
-      resolve(true);
-    };
-
-    cancelBtn.onclick = () => {
-      modal.classList.add("hidden");
-      resolve(false);
-    };
-  });
 }
 
 function showLoading() {

@@ -117,7 +117,7 @@
                             on location, order size, and delivery method.
                         </div>
                     </div>
-                    <button id="placeOrderBtn" class="place-order-btn"><i class='bx  bxs-shopping-bag'></i> Place
+                    <button id="placeOrderBtn" class="place-order-btn" disabled><i class='bx  bxs-shopping-bag'></i> Place
                         Order</button>
                 </div>
             </div>
@@ -148,17 +148,7 @@
             <button type="button" class="close" onclick="closeModal()">Cancel</button>
         </div>
     </div>
-    <div id="uiModal" class="modal hidden">
-        <div class="modal-box">
-            <h3 id="uiModalTitle">Notice</h3>
-            <p id="uiModalMessage"></p>
-
-            <div class="ui-actions">
-                <button id="uiConfirmBtn" class="confirm-btn">Confirm</button>
-                <button id="uiCancelBtn" class="close-btn">Cancel</button>
-            </div>
-        </div>
-    </div>
+    
     <div id="loadingOverlay" class="loading hidden">
         <div class="spinner"></div>
         <p id="loadingText">Processing your order…</p>

@@ -38,15 +38,15 @@ window.addEventListener("DOMContentLoaded", async () => {
       const reviewText = document.getElementById("reviewText").value.trim();
 
       if (!name || !email || !reviewText) {
-        return alert("Please fill all review fields.");
+        await uiAlert("Please fill all review fields.");
       }
 
       if (!selectedRating) {
-        return alert("Please select a rating.");
+        await uiAlert("Please select a rating.");
       }
 
       const productId = getProductId();
-      if (!productId) return alert("Product ID missing");
+      if (!productId) await uiAlert("Product ID missing");
 
       try {
         // Insert as array for consistency
@@ -70,10 +70,10 @@ window.addEventListener("DOMContentLoaded", async () => {
         // Reload reviews (this will also dispatch reviewAdded)
         await loadReviews();
 
-        alert("Thank you — your review has been submitted.");
+        await uiAlert("Thank you — your review has been submitted.");
       } catch (err) {
         console.error("Review submit failed", err);
-        alert("Could not submit review. Please try again later.");
+        await uiAlert("Could not submit review. Please try again later.");
       }
     });
   }
