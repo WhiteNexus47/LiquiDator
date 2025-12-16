@@ -196,7 +196,7 @@ async function addToCartById(id) {
   try {
     const list = await loadProducts();
     const item = list.find((p) => p.id == id);
-    if (!item) alert("Product not found");
+    if (!item) await uiAlert("Product not found");
 
     if (typeof addToCart === "function") {
       addToCart(item);
@@ -225,7 +225,7 @@ async function addToCartById(id) {
     } catch (e) {}
   } catch (err) {
     console.error(err);
-    alert("Could not add to cart");
+    await uiAlert("Could not add to cart");
   }
 }
 
