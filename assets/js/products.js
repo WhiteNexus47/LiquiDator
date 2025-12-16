@@ -18,6 +18,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   if (!product) return;
 
   renderProduct();
+  await renderProductRating();
   renderVariants();
   renderSimilar();
   updateAddBtnState();
@@ -173,14 +174,29 @@ function renderProduct() {
   if (btn) btn.onclick = handleCartAction;
   if (mobileBtn) mobileBtn.onclick = handleCartAction;
 
-  const rating = (product && product.rating) || 0;
-  const ratingCount = (product && product.ratingCount) || 0;
+  updateAddBtnState();
+}
+
+async function renderProductRating() {
+  const productId = getProductId();
+  if (!productId || typeof getProductRating !== "function") return;
+
+  const { rating, count } = await getProductRating(Number(productId));
+
   const ratingBoxEl = document.getElementById("ratingBox");
   if (ratingBoxEl) {
-    ratingBoxEl.innerHTML = `${rating.toFixed(1)} ★ | ${ratingCount}`;
+    if (count && count > 0) {
+      ratingBoxEl.innerHTML = `
+        <span class="rating-value">${rating.toFixed(1)}<span style="color: gold">★</span></span>
+        <span class="rating-count">| ${count}</span>
+      `;
+    } else {
+      ratingBoxEl.innerHTML = `
+        <span class="rating-value">—</span>
+        <span class="rating-count">| 0</span>
+      `;
+    }
   }
-
-  updateAddBtnState();
 }
 
 function updateAddBtnState() {
@@ -371,6 +387,7 @@ async function loadReviews(productIdArg) {
 
   renderReviews(data || []);
   renderAverage(data || []);
+  await renderProductRating();
 
   // Notify other parts of the site (product cards) that reviews changed
   window.dispatchEvent(
@@ -389,7 +406,7 @@ function renderReviews(reviews) {
     container.innerHTML += `
       <div class="review">
         <strong>${r.name}</strong>
-        <div>${renderStars(r.rating)}</div>
+        <div class="review-stars">${r.rating.toFixed(1)}</div>
         <p>${r.review}</p>
         <small>${new Date(r.created_at).toLocaleDateString()}</small>
       </div>

@@ -55,18 +55,34 @@ function initCartButton() {
 }
 
 /* =============================
-   HEADER SCROLL EFFECT
+   HEADER SCROLL BEHAVIOR
+   - scroll down → hide
+   - scroll up → show
 ============================= */
+let headerScrollBound = false;
+
 function initHeaderScroll() {
   const header = document.getElementById("main-header");
-  if (!header) return;
+  if (!header) {
+    console.warn("Header not found");
+    return;
+  }
+
+  let lastScrollY = window.scrollY;
+  const headerHeight = header.offsetHeight;
 
   window.addEventListener("scroll", () => {
-    if (window.scrollY > 70) {
-      header.classList.add("scrolled");
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > lastScrollY && currentScrollY > headerHeight) {
+      // scroll DOWN → hide
+      header.style.transform = `translateY(-${headerHeight}px)`;
     } else {
-      header.classList.remove("scrolled");
+      // scroll UP → show
+      header.style.transform = "translateY(0)";
     }
+
+    lastScrollY = currentScrollY;
   });
 }
 
@@ -101,10 +117,33 @@ function initMenuToggle() {
 
   if (!menuBtn || !mobileMenu) return;
 
-  // Toggle open/close
+  // Toggle open/close and update ARIA attributes
   menuBtn.addEventListener("click", () => {
     menuBtn.classList.toggle("active");
-    mobileMenu.classList.toggle("open");
+    const isOpen = menuBtn.classList.contains("active");
+    if (isOpen) {
+      mobileMenu.classList.add("open");
+      menuBtn.setAttribute("aria-expanded", "true");
+      mobileMenu.setAttribute("aria-hidden", "false");
+    } else {
+      mobileMenu.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded", "false");
+      mobileMenu.setAttribute("aria-hidden", "true");
+    }
+  });
+
+  // Make toggle operable via keyboard
+  menuBtn.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      menuBtn.click();
+    }
+    if (e.key === "Escape") {
+      menuBtn.classList.remove("active");
+      mobileMenu.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded", "false");
+      mobileMenu.setAttribute("aria-hidden", "true");
+    }
   });
 
   // Close when clicking any link inside mobile menu
@@ -112,7 +151,21 @@ function initMenuToggle() {
     link.addEventListener("click", () => {
       menuBtn.classList.remove("active");
       mobileMenu.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded", "false");
+      mobileMenu.setAttribute("aria-hidden", "true");
     });
+  });
+
+  // Close on outside clicks
+  document.addEventListener("click", (e) => {
+    if (!menuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+      if (menuBtn.classList.contains("active")) {
+        menuBtn.classList.remove("active");
+        mobileMenu.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+        mobileMenu.setAttribute("aria-hidden", "true");
+      }
+    }
   });
 }
 

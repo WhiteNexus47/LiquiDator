@@ -14,7 +14,7 @@
 /* CART PAGE */
 .cart-page {
   max-width: 1200px;
-  margin: 120px auto 40px;
+  margin: 10px auto 40px;
   padding: 20px;
 }
 
@@ -34,6 +34,8 @@
 .cart-list {
   background: var(--cream);
   padding: 20px;
+  height: 500px;
+  overflow-y: auto;
   border-radius: 12px;
   display: flex;
   flex-direction: column;

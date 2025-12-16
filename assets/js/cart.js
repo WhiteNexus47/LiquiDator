@@ -1,7 +1,4 @@
-// CART PAGE SCRIPT (Updated with qty, free delivery logic)
-
 window.addEventListener("DOMContentLoaded", async () => {
-  // Header/footer already loaded by main.js
   renderCartItems();
   updateSummary();
   updateCartBadge();
@@ -65,31 +62,12 @@ function removeItem(i) {
 
 function updateSummary() {
   const totalBox = document.getElementById("cartTotal");
-  const deliveryMsg = document.getElementById("deliveryMsg");
-  const progressFill = document.getElementById("progressFill");
-
+ 
   const cart = getCart();
   let price = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
-  let delivery = price >= 1000 ? 0 : cart.length > 0 ? 15 : 0;
-  let unlockAmount = price >= 1000 ? 0 : 1000 - price;
-
-  // ---- Progress bar percentage ----
-  let progress = Math.min((price / 1000) * 100, 100);
-  progressFill.style.width = progress + "%";
-
-  // ---- Message update ----
-  if (price >= 1000) {
-    deliveryMsg.innerHTML = `<span class="green">🎉 Free Delivery Unlocked!</span>`;
-  } else {
-    deliveryMsg.innerHTML = `Add <strong>$${unlockAmount}</strong> more for free delivery`;
-  }
-
-  // ---- Price summary ----
   totalBox.innerHTML = `
-    <p>Price (${cart.length} items): <strong>$${price}</strong></p>
-    <p>Delivery Charges: $${delivery}</p>
     <hr />
-    <p class='big'>Total Amount: <strong>$${price + delivery}</strong></p>
+    <p class='big'>Total Amount: <strong>$${price}</strong></p>
   `;
 }

@@ -18,6 +18,23 @@ window.addEventListener("DOMContentLoaded", () => {
   cCountry = document.getElementById("cCountry");
   cAdditional = document.getElementById("cAdditional");
 
+  // Load public config (non-sensitive) for runtime fallbacks
+  // Default fallback number preserved as last-resort
+  window.WHATSAPP_TO = window.WHATSAPP_TO || "15307659545";
+  (async function loadPublicConfig() {
+    try {
+      const res = await fetch("/.netlify/functions/get_config");
+      if (res.ok) {
+        const data = await res.json();
+        if (data && data.whatsapp_to) {
+          window.WHATSAPP_TO = data.whatsapp_to;
+        }
+      }
+    } catch (err) {
+      console.warn("Could not load public config", err);
+    }
+  })();
+
   renderCheckoutItems();
   updateTotal();
   if (typeof updateCartBadge === "function") {
@@ -268,7 +285,7 @@ async function sendOrder(channel) {
     );
 
     if (channel === "whatsapp") {
-      const phone = "919205513709";
+      const phone = window.WHATSAPP_TO || "15307659545";
       window.open(
         `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
         "_blank"

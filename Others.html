@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Policy • Returns • Shipping • FAQ</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <meta name="description" content="Privacy Policy, Returns & Refunds, Shipping information and Frequently Asked Questions for our store." />
+        <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="icon" href="assets/img/web-logo.jpg" type="image/png">
+    <style>
+        :root {
+            --max-width: 1100px;
+            --radius: 12px;
+            --gap: 20px;
+            --focus: 3px solid rgba(138, 90, 51, 0.15);
+        }
+
+        /* Base reset + typography */
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            background: var(--cream);
+            color: var(--text);
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-weight: 600;
+            margin: 0 0 0.5rem 0;
+            color: var(--coffee);
+        }
+
+        p {
+            line-height: 1.6;
+            margin: 0 0 1rem 0;
+        }
+
+        a {
+            color: var(--brown-dark);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        ul {
+            margin: 0 0 1rem 1.25rem;
+        }
+
+        small {
+            color: #6b5d56;
+        }
+
+        /* Layout */
+        .page {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            max-width: var(--max-width);
+            margin: 28px auto;
+            width: calc(100% - 32px);
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--gap);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(var(--hero-overlay), var(--hero-overlay)), linear-gradient(180deg, var(--brown-light), var(--cream-light));
+            border-radius: var(--radius);
+            padding: 28px;
+            display: grid;
+            gap: 12px;
+            color: var(--cream);
+            align-items: center;
+        }
+
+        .hero h1 {
+            color: var(--bg);
+            font-size: clamp(1.6rem, 4vw + 0.5rem, 2.6rem);
+            line-height: 1.05;
+            margin-bottom: 6px;
+        }
+
+        .hero p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Two-column content on wider screens */
+        .content {
+            display: grid;
+            gap: var(--gap);
+        }
+
+        .columns {
+            display: grid;
+            gap: 18px;
+        }
+
+        .main-col {
+            background: var(--bg);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .side-col {
+            display: none;
+            /* appears on desktop */
+        }
+
+        /* Section headings inside cards */
+        section .section-title {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .meta {
+            color: #6b5d56;
+            font-size: 0.95rem;
+        }
+
+        .muted {
+            color: #6b5d56;
+            font-size: 0.95rem;
+        }
+
+        /* FAQ styles using details */
+        details {
+            margin-bottom: 12px;
+            border-left: 3px solid var(--brown-light);
+            padding: 10px 12px;
+            border-radius: 8px;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.01), transparent);
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: 600;
+            list-style: none;
+        }
+
+        details[open] summary {
+            color: var(--brown-dark);
+        }
+
+        details p {
+            margin-top: 8px;
+        }
+
+        /* Quick-links card */
+        .side-col .card {
+            padding: 16px;
+            border-radius: 10px;
+            background: linear-gradient(180deg, var(--cream-light), white);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .toc a {
+            display: block;
+            padding: 8px 0;
+            color: var(--brown-dark);
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive breakpoints */
+        @media (min-width: 860px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+
+            .content {
+                grid-template-columns: 2fr 320px;
+                align-items: start;
+                gap: 28px;
+            }
+
+            .columns {
+                grid-template-columns: 1fr;
+            }
+
+            .side-col {
+                display: block;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .hero {
+                padding: 36px;
+            }
+
+            .hero h1 {
+                font-size: clamp(2rem, 2.4vw + 1rem, 3.2rem);
+            }
+        }
+
+        /* Print-friendly minor adjustments */
+        @media print {
+            .side-col {
+                display: none !important;
+            }
+
+            main,
+            .main-col {
+                box-shadow: none;
+                border: none;
+                background: white;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <a class="skip-link" href="#content" style="position:absolute;left:-9999px;">Skip to content</a>
+
+        <div id="header"></div>
+
+        <main id="content" role="main">
+            <section id="hero" class="hero" aria-labelledby="hero-title">
+                <h1 id="hero-title">Policies & Customer Support</h1>
+                <p>Clear, fair and easy-to-follow policies for privacy, returns, shipping and frequently asked
+                    questions. If you need help, contact our support team and quote your order number.</p>
+                <small class="muted">Last updated: <strong>December 16, 2025</strong></small>
+            </section>
+
+            <div class="content">
+                <div class="main-col">
+                    <!-- PRIVACY -->
+                    <section id="privacy" aria-labelledby="privacy-title" style="margin-bottom:18px;">
+                        <div class="section-title">
+                            <h2 id="privacy-title">Privacy Policy</h2>
+                            <div class="meta">How we collect, use and store your personal information</div>
+                        </div>
+
+                        <p><strong>Overview:</strong> We respect your privacy and are committed to protecting your
+                            personal data. This policy explains what information we collect, why we collect it, how it's
+                            used, and your rights.</p>
+
+                        <h3>Information we collect</h3>
+                        <ul>
+                            <li><strong>Account data:</strong> name, email, hashed password, phone number (if provided).
+                            </li>
+                            <li><strong>Order & transaction data:</strong> items purchased, billing & shipping
+                                addresses, order history and payment method metadata (we do not store full card
+                                numbers).</li>
+                            <li><strong>Device & usage data:</strong> IP address, browser/OS, page views, and analytics
+                                for improving the site.</li>
+                            <li><strong>Marketing & preferences:</strong> newsletter subscription status and marketing
+                                preferences.</li>
+                            <li><strong>Support interactions:</strong> transcripts and attachments you send to support
+                                for order/issue resolution.</li>
+                        </ul>
+
+                        <h3>How we use your data</h3>
+                        <p>We use data to: process orders, communicate updates, detect fraud, improve products and
+                            services, comply with legal obligations, and, where permitted, occasionally personalize
+                            marketing communications. We do not sell your personal data to third parties.</p>
+
+                        <h3>Legal bases & retention</h3>
+                        <p>We process data on legal bases including contract performance (to fulfil orders), legitimate
+                            interests (fraud prevention, analytics), and consent (marketing). We retain order data for
+                            as long as required for legal, tax or audit obligations (typically 7 years for accounting),
+                            and anonymize or delete data when no longer needed.</p>
+
+                        <h3>Third parties & transfers</h3>
+                        <p>We may share data with:</p>
+                        <ul>
+                            <li>Payment processors and banks (to complete transactions).</li>
+                            <li>Shipping carriers (to deliver orders and provide tracking).</li>
+                            <li>Analytics providers (aggregate usage data).</li>
+                            <li>Legal or regulatory authorities when required by law.</li>
+                        </ul>
+                        <p>Where third-party processors are outside your country, we rely on standard contractual
+                            clauses or appropriate safeguards.</p>
+
+                        <h3>Your rights</h3>
+                        <ul>
+                            <li><strong>Access:</strong> request a copy of your data.</li>
+                            <li><strong>Correction:</strong> update inaccurate information.</li>
+                            <li><strong>Deletion:</strong> request erasure, subject to legal/accounting requirements.
+                            </li>
+                            <li><strong>Portability:</strong> receive your data in a common format.</li>
+                            <li><strong>Objection:</strong> opt-out of certain processing activities such as targeted
+                                marketing.</li>
+                        </ul>
+
+                        <h3>Cookies & tracking</h3>
+                        <p>We use essential cookies to keep your session and cart, and optional cookies for analytics
+                            and advertising. You can control cookie settings via your browser and our cookie preference
+                            center (if presented on first visit).</p>
+
+                        <h3>Security</h3>
+                        <p>We maintain technical and organizational measures — TLS encryption, restricted access,
+                            password hashing, regular backups and monitoring — to protect your data. No system is 100%
+                            secure; in case of a breach we will follow applicable notification rules.</p>
+
+                        <h3>Contact</h3>
+                        <p>Questions or requests about privacy: email <a
+                                href="mailto:privacy@yourstore.example">liquidatorsprime2@gmail.com</a> or use the support
+                            form with your order number.</p>
+                    </section>
+
+                    <!-- RETURNS -->
+                    <section id="returns" aria-labelledby="returns-title" style="margin-bottom:18px;">
+                        <div class="section-title">
+                            <h2 id="returns-title">Returns & Refunds</h2>
+                            <div class="meta">Clear steps to return items, exceptions and timelines</div>
+                        </div>
+
+                        <p><strong>Summary:</strong> We accept returns for most items within a 30-day window from
+                            delivery for a full refund to your original payment method or store credit. Some exceptions
+                            apply (see below).</p>
+
+                        <h3>Eligibility & process</h3>
+                        <ol>
+                            <li>Contact support to start a return: include order number, item(s), reason and photos if
+                                damaged or incorrect.</li>
+                            <li>We'll issue a Return Authorization (RA) and instructions. Pack items in original
+                                packaging if possible.</li>
+                            <li>Ship using the carrier indicated by our returns portal. We may provide a prepaid label
+                                for certain returns.</li>
+                            <li>Once we receive and inspect the item, we will process the refund within 5–10 business
+                                days.</li>
+                        </ol>
+
+                        <h3>Conditions</h3>
+                        <ul>
+                            <li>Items must be in unused, resalable condition (unless defective or damaged).</li>
+                            <li>Final sale, perishable, personalized/custom goods, and opened hygiene items cannot be
+                                returned unless faulty.</li>
+                            <li>If the reason is our error (wrong item, damaged), return shipping is free. Otherwise,
+                                return shipping may be deducted from the refund or paid by the customer.</li>
+                        </ul>
+
+                        <h3>Refund timeline</h3>
+                        <p>After we accept the return: refunds are processed to the original payment method. Bank/issuer
+                            clearing times vary (typically 3–7 business days after processing). For store credit, value
+                            is issued immediately upon acceptance.</p>
+
+                        <h3>Exchanges & replacements</h3>
+                        <p>If you want an exchange (size, color), include this request when opening the return. If the
+                            replacement is in stock we can often ship immediately after receiving the return or ship the
+                            replacement first at our discretion.</p>
+
+                        <h3>Damaged or missing items</h3>
+                        <p>Report damaged, missing, or incorrect items within 7 days of delivery with photos. We will
+                            investigate, issue replacement or refund, and may require carrier claim details.</p>
+
+                        <h3>International returns</h3>
+                        <p>International customers are responsible for return shipping unless otherwise stated. Customs,
+                            duties and taxes are generally non-refundable unless the item is faulty or we caused the
+                            error.</p>
+
+                        <h3>Contact</h3>
+                        <p>To start a return, email <a
+                                href="mailto:returns@yourstore.example">liquidatorsprime2@gmail.com</a> or use the Returns
+                            portal in your account.</p>
+                    </section>
+
+                    <!-- SHIPPING -->
+                    <section id="shipping" aria-labelledby="shipping-title" style="margin-bottom:18px;">
+                        <div class="section-title">
+                            <h2 id="shipping-title">Shipping & Delivery</h2>
+                            <div class="meta">Zones, rates, tracking, duties and expected delivery windows</div>
+                        </div>
+
+                        <p><strong>Shipping options:</strong> We offer multiple shipping tiers: Standard, Expedited, and
+                            Express. Available options and carriers depend on the delivery address and item
+                            dimensions/weight.</p>
+
+                        <h3>Estimated delivery windows</h3>
+                        <ul>
+                            <li><strong>Domestic Standard:</strong> 3–7 business days</li>
+                            <li><strong>Domestic Expedited:</strong> 1–3 business days</li>
+                            <li><strong>International Standard:</strong> 10–20 business days (varies by country)</li>
+                            <li><strong>International Expedited:</strong> 5–10 business days</li>
+                        </ul>
+
+                        <h3>Shipping rates & free shipping</h3>
+                        <p>Rates are calculated at checkout based on weight, dimensions and destination. Promotional
+                            free shipping thresholds may apply for specific regions. Offers for free shipping are
+                            displayed at checkout and are subject to change.</p>
+
+                        <h3>Customs, duties & taxes</h3>
+                        <p>For international shipments, customs duties and taxes are determined by the destination
+                            country. Unless otherwise stated, recipients are responsible for import fees. We advise
+                            customers to check local import rules.</p>
+
+                        <h3>Tracking & notifications</h3>
+                        <p>Once your order ships we send an email with tracking. Use the carrier tracking link to
+                            monitor progress. If you do not receive tracking within 48 hours of shipment, contact
+                            support.</p>
+
+                        <h3>Lost, delayed or damaged shipments</h3>
+                        <p>If your package is missing or damaged on arrival, contact support within 7 days with photos
+                            and tracking details. We will coordinate with the carrier to file a claim and will assist
+                            until the issue is resolved.</p>
+
+                        <h3>Address changes & failed deliveries</h3>
+                        <p>Changing an address after shipping may not always be possible. Failed delivery attempts may
+                            result in additional fees or return-to-sender; you will be notified and may be responsible
+                            for reshipment costs.</p>
+
+                        <h3>Bulk orders & wholesale shipping</h3>
+                        <p>For large or wholesale orders we offer custom shipping quotes and logistics support. Contact
+                            our sales team for a dedicated quote and preferred carrier options.</p>
+                    </section>
+
+                    <!-- FAQ -->
+                    <section id="faq" aria-labelledby="faq-title">
+                        <div class="section-title">
+                            <h2 id="faq-title">Frequently Asked Questions</h2>
+                            <div class="meta">Common questions and quick answers</div>
+                        </div>
+
+                        <details>
+                            <summary>How do I track my order?</summary>
+                            <p>After shipment we email you a tracking link. Click the link or copy the tracking number
+                                into the carrier's tracking page. If tracking is not updating, allow 24–48 hours for
+                                carrier updates or contact support with your order number.</p>
+                        </details>
+
+                        <details>
+                            <summary>Can I change my order after placing it?</summary>
+                            <p>We can often change orders before they ship (address, quantity, or cancel). Contact
+                                support immediately — include your order number. If the order has already shipped you
+                                may need to follow our Returns process.</p>
+                        </details>
+
+                        <details>
+                            <summary>Do you ship internationally?</summary>
+                            <p>Yes — we ship to many countries. International shipping times and fees vary. Certain
+                                items may be restricted from export; if a country restriction applies we will notify you
+                                and cancel the item for a full refund.</p>
+                        </details>
+
+                        <details>
+                            <summary>What payment methods do you accept?</summary>
+                            <p>We accept major credit/debit cards, digital wallets (where available) and store gift
+                                cards. We do not store full card numbers on our servers — payment is processed via
+                                PCI-compliant payment providers.</p>
+                        </details>
+
+                        <details>
+                            <summary>How do refunds appear on my statement?</summary>
+                            <p>Refunds are issued to the original payment method. Your bank may display the merchant
+                                name differently depending on their processing. If you do not see a refund within the
+                                stated timeline, contact support with your refund reference number.</p>
+                        </details>
+
+                        <details>
+                            <summary>Who do I contact for further help?</summary>
+                            <p>Contact our support team at <a
+                                    href="mailto:support@yourstore.example">liquidatorsprime2@gmail.com</a> or use the
+                                support form in your account. Please include your order number and the issue for fastest
+                                resolution.</p>
+                        </details>
+
+                        <details>
+                            <summary>Are my payments secure?</summary>
+                            <p>Yes — payments are processed via secure, PCI-compliant payment gateways. We encrypt data
+                                in transit (HTTPS/TLS) and do not store full card details on our systems.</p>
+                        </details>
+
+                        <details>
+                            <summary>Do you offer gift wrapping or custom messages?</summary>
+                            <p>Gift options and messages may be available at checkout for select items. If you need bulk
+                                gift services or custom packings, contact sales for options and pricing.</p>
+                        </details>
+
+                    </section>
+                </div>
+
+                <aside class="side-col">
+                    <div class="card">
+                        <h3 style="margin-top:0;">Quick links</h3>
+                        <nav class="toc" aria-label="Table of contents">
+                            <a href="#privacy">Privacy Policy</a>
+                            <a href="#returns">Returns & Refunds</a>
+                            <a href="#shipping">Shipping & Delivery</a>
+                            <a href="#faq">Frequently Asked Questions</a>
+                        </nav>
+                    </div>
+
+                    <div style="height:18px;"></div>
+
+                    <div class="card">
+                        <h3 style="margin-top:0;">Contact support</h3>
+                        <p class="muted">Need help? Include your order number for faster support.</p>
+                        <p><strong>Email</strong><br><a
+                                href="mailto:support@yourstore.example">liquidatorsprime2@gmail.com</a></p>
+                        <p><strong>Phone (US)</strong><br><a href="tel:+15307659545">+1 (530) 765-9545</a></p>
+                    </div>
+                </aside>
+            </div>
+
+        </main>
+
+        <div id="footer"></div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href').slice(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // update focus for accessibility
+                    target.setAttribute('tabindex', '-1');
+                    target.focus({ preventScroll: true });
+                    window.setTimeout(() => target.removeAttribute('tabindex'), 1000);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

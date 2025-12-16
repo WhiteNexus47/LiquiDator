@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Testimonials | Prime Liquidators</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="icon" href="assets/img/web-logo.jpg" type="image/png">
+
+  <style>
+    /* =============================
+       TESTIMONIALS PAGE
+    ============================= */
+
+    body {
+      background: var(--cream-light);
+      color: var(--text);
+    }
+
+    .testimonials-hero {
+      padding: 50px 20px 30px;
+      text-align: center;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .testimonials-hero h1 {
+      font-size: 2.4rem;
+      color: var(--coffee);
+      margin-bottom: 12px;
+    }
+
+    .testimonials-hero p {
+      font-size: 1.05rem;
+      color: #6b5d56;
+      max-width: 720px;
+      margin: auto;
+      line-height: 1.6;
+    }
+
+    .testimonials-grid {
+      max-width: 1100px;
+      margin: 0 auto 80px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+
+    .testimonial-card {
+      background: var(--cream);
+      border: 1px solid var(--brown-light);
+      border-radius: 14px;
+      padding: 26px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .testimonial-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .testimonial-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #ddd;
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      color: var(--coffee);
+      font-size: 0.95rem;
+    }
+
+    .testimonial-role {
+      font-size: 0.82rem;
+      color: #7a6b63;
+    }
+
+    .testimonial-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    .testimonial-meta {
+      margin-top: auto;
+      font-size: 0.8rem;
+      color: #8a7b72;
+    }
+
+    .trust-strip {
+      background: var(--cream);
+      border-top: 1px solid var(--brown-light);
+      border-bottom: 1px solid var(--brown-light);
+      padding: 40px 20px;
+    }
+
+    .trust-strip-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      text-align: center;
+    }
+
+    .trust-item h3 {
+      color: var(--coffee);
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+    }
+
+    .trust-item p {
+      font-size: 0.9rem;
+      color: #6b5d56;
+    }
+
+    @media (max-width: 600px) {
+      .testimonials-hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header"></div>
+
+  <!-- HERO -->
+  <section class="testimonials-hero">
+    <h1>Trusted by Buyers Nationwide</h1>
+    <p>
+      We work with small businesses, resellers, and wholesale buyers across
+      the country. Here’s what customers say about working with Prime Liquidators.
+    </p>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-grid">
+
+    <div class="testimonial-card">
+      <div class="testimonial-top">
+        <img src="assets/img/avatars/avatar1.jpg" alt="" class="testimonial-avatar">
+        <div>
+          <div class="testimonial-name">Michael R.</div>
+          <div class="testimonial-role">Small Business Owner</div>
+        </div>
+      </div>
+      <p class="testimonial-text">
+        Inventory matched the manifest and shipping was handled professionally.
+        Communication throughout the process was clear and timely.
+      </p>
+      <div class="testimonial-meta">Wholesale pallet purchase</div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-top">
+        <img src="assets/img/avatars/avatar2.jpg" alt="" class="testimonial-avatar">
+        <div>
+          <div class="testimonial-name">José R.</div>
+          <div class="testimonial-role">Online Reseller</div>
+        </div>
+      </div>
+      <p class="testimonial-text">
+        Nous avons commandé plusieurs lots de liquidation et l’expérience a été constante. Les prix étaient corrects et la livraison fiable.
+      </p>
+      <div class="testimonial-meta">Repeat buyer</div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-top">
+        <img src="assets/img/avatars/avatar3.jpg" alt="" class="testimonial-avatar">
+        <div>
+          <div class="testimonial-name">James T.</div>
+          <div class="testimonial-role">Wholesale Buyer</div>
+        </div>
+      </div>
+      <p class="testimonial-text">
+        The pallet we received was consistent with the description and arrived within 
+        the expected timeframe. Overall a smooth transaction.
+      </p>
+      <div class="testimonial-meta">Repeat buyer</div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-top">
+        <img src="assets/img/avatars/avatar4.jpg" alt="" class="testimonial-avatar">
+        <div>
+          <div class="testimonial-name">Linda M.</div>
+          <div class="testimonial-role">Online Reseller</div>
+        </div>
+      </div>
+      <p class="testimonial-text">
+       Good experience working with Prime Liquidators. Pricing was clear and the ordering process was straightforward.
+      </p>
+      <div class="testimonial-meta">Repeat buyer</div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-top">
+        <img src="assets/img/avatars/avatar5.jpg" alt="" class="testimonial-avatar">
+        <div>
+          <div class="testimonial-name">Robert K.</div>
+          <div class="testimonial-role">Small Business Owner</div>
+        </div>
+      </div>
+      <p class="testimonial-text">
+        Communication was responsive and professional. Items were packaged properly and matched the listing details.
+      </p>
+      <div class="testimonial-meta">Repeat buyer</div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-top">
+        <img src="assets/img/avatars/avatar6.jpg" alt="" class="testimonial-avatar">
+        <div>
+          <div class="testimonial-name">Vikram P.</div>
+          <div class="testimonial-role">Retail Arbitrage Seller</div>
+        </div>
+      </div>
+      <p class="testimonial-text">
+       This was our first liquidation purchase and the process was easy to follow. Support answered our questions quickly.
+      </p>
+      <div class="testimonial-meta">Repeat buyer</div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-top">
+        <img src="assets/img/avatars/avatar7.jpg" alt="" class="testimonial-avatar">
+        <div>
+          <div class="testimonial-name">Anthony D.</div>
+          <div class="testimonial-role">E-commerce Seller</div>
+        </div>
+      </div>
+      <p class="testimonial-text">
+       We’ve sourced multiple lots and the experience has been consistent. No surprises, which is important for our business.
+      </p>
+      <div class="testimonial-meta">Repeat buyer</div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-top">
+        <img src="assets/img/avatars/avatar8.jpg" alt="" class="testimonial-avatar">
+        <div>
+          <div class="testimonial-name">Brian H.</div>
+          <div class="testimonial-role">Small Business Owner</div>
+        </div>
+      </div>
+      <p class="testimonial-text">
+       Inventory was accurately represented and delivered on schedule. We plan to continue sourcing from Prime Liquidators.
+      </p>
+      <div class="testimonial-meta">Repeat buyer</div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-top">
+        <img src="assets/img/avatars/avatar9.jpg" alt="" class="testimonial-avatar">
+        <div>
+          <div class="testimonial-name">Ayush P.</div>
+          <div class="testimonial-role">Online Reseller</div>
+        </div>
+      </div>
+      <p class="testimonial-text">
+       Clear manifest was provided and pricing was reasonable. Overall buying experience was smooth and reliable for our business.
+      </p>
+      <div class="testimonial-meta">Repeat buyer</div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-top">
+        <img src="assets/img/avatars/avatar10.jpg" alt="" class="testimonial-avatar">
+        <div>
+          <div class="testimonial-name">Carlos M.</div>
+          <div class="testimonial-role">Wholesale Buyer</div>
+        </div>
+      </div>
+      <p class="testimonial-text">
+       Everything from checkout to delivery was handled professionally. The team kept us informed throughout the process.
+      </p>
+      <div class="testimonial-meta">Repeat buyer</div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-top">
+        <img src="assets/img/avatars/avatar11.jpg" alt="" class="testimonial-avatar">
+        <div>
+          <div class="testimonial-name">Nicole F.</div>
+          <div class="testimonial-role">Retail Reseller</div>
+        </div>
+      </div>
+      <p class="testimonial-text">
+       Orders arrived as expected and were easy to process into our inventory. A dependable liquidation partner.
+      </p>
+      <div class="testimonial-meta">Repeat buyer</div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-top">
+        <img src="assets/img/avatars/avatar12.jpg" alt="" class="testimonial-avatar">
+        <div>
+          <div class="testimonial-name">Daniel P.</div>
+          <div class="testimonial-role">Wholesale Buyer</div>
+        </div>
+      </div>
+      <p class="testimonial-text">
+        Product condition aligned with expectations and support was responsive
+        when we had follow-up questions.
+      </p>
+      <div class="testimonial-meta">Bulk liquidation order</div>
+    </div>
+
+  </section>
+
+  <!-- TRUST STRIP -->
+  <section class="trust-strip">
+    <div class="trust-strip-inner">
+      <div class="trust-item">
+        <h3>500+ Lots Sold</h3>
+        <p>Across multiple categories and buyer types</p>
+      </div>
+      <div class="trust-item">
+        <h3>Nationwide Shipping</h3>
+        <p>Serving buyers across the United States</p>
+      </div>
+      <div class="trust-item">
+        <h3>B2B & Resale Focused</h3>
+        <p>Supporting resellers and wholesale buyers</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer"></div>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/utils.js"></script>
+</body>
+</html>

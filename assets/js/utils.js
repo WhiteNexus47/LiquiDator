@@ -261,23 +261,19 @@ function qs(selector) {
 }
 
 function renderAverage(reviews) {
-  if (!reviews.length) return;
-
   const total = reviews.reduce((sum, r) => sum + r.rating, 0);
-  const avg = (total / reviews.length).toFixed(1);
+  const avg = reviews.length ? (total / reviews.length).toFixed(1) : "—";
 
   // Prefer dedicated ID if present, otherwise update summary UI on product page
   const el = document.querySelector("#ratingAverage");
   if (el) {
-    el.innerHTML = `${renderStars(avg)}<span>${avg} ★ | ${
-      reviews.length
-    } reviews</span>`;
+    el.innerHTML = `<span class="avg-rating">${avg}</span><span> | ${reviews.length} reviews</span>`;
     return;
   }
 
   const avgEl = document.querySelector(".reviews-summary .avg-rating");
   const countEl = document.querySelector(".reviews-summary .review-count");
-  if (avgEl) avgEl.textContent = `${avg} ★`;
+  if (avgEl) avgEl.textContent = reviews.length ? `${avg}` : "—";
   if (countEl) countEl.textContent = `Based on ${reviews.length} reviews`;
 }
 
