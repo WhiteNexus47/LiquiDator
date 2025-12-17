@@ -264,7 +264,7 @@ async function sendOrder(channel) {
     );
 
     if (channel === "whatsapp") {
-      const phone = window.CONFIG?.WHATSAPP_TO || "15307659545";
+      const phone = window.CONFIG?.WHATSAPP_TO;
       window.open(
         `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
         "_blank"

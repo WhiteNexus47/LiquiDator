@@ -13,7 +13,7 @@ def handler(event, context):
 
         # Environment variables
         WHATSAPP_TOKEN = os.environ.get("WHATSAPP_TOKEN")
-        PHONE_NUMBER_ID = os.environ.get("WHATSAPP_PHONE_NUMBER_ID")
+        PHONE_NUMBER_ID = os.environ.get("PHONE_NUMBER_ID")
         TO_NUMBER = os.environ.get("WHATSAPP_TO")
 
         if not WHATSAPP_TOKEN or not PHONE_NUMBER_ID or not TO_NUMBER:
