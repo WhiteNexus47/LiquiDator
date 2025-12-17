@@ -50,30 +50,33 @@
 
   <section class="reviews-section">
     <h2>Customer Reviews</h2>
-    <div class="reviews-summary">
+    <div class="reviews-summary" id="openReviews">
       <span class="avg-rating">—</span>
       <span class="review-count"></span>
+      <span class="reviews-arrow" aria-hidden="true"><i class="bx bx-chevron-down reviews-arrow"></i></span>
     </div>
-    <div id="reviewsList" class="reviews-list">
-      <!-- reviews injected here -->
-    </div>
+    <div class="review-dropdown" id="Dropreviews">
+      <div id="reviewsList" class="reviews-list">
+        <!-- reviews injected here -->
+      </div>
 
-    <div class="add-review">
-      <h3>Add a review</h3>
-      <p class="note">Your email will not be published.</p>
+      <div class="add-review">
+        <h3>Add a review</h3>
+        <p class="note">Your email will not be published.</p>
 
-      <form id="reviewForm">
-        <div class="star-input" id="starInput"></div>
+        <form id="reviewForm">
+          <div class="star-input" id="starInput"></div>
 
-        <textarea id="reviewText" placeholder="Write your review…" required></textarea>
+          <textarea id="reviewText" placeholder="Write your review…" required></textarea>
 
-        <div class="review-fields">
-          <input type="text" id="reviewName" placeholder="Name *" required />
-          <input type="email" id="reviewEmail" placeholder="Email *" required />
-        </div>
+          <div class="review-fields">
+            <input type="text" id="reviewName" placeholder="Name *" required />
+            <input type="email" id="reviewEmail" placeholder="Email *" required />
+          </div>
 
-        <button type="submit">Submit Review</button>
-      </form>
+          <button type="submit">Submit Review</button>
+        </form>
+      </div>
     </div>
   </section>
 

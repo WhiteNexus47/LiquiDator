@@ -26,7 +26,20 @@ window.addEventListener("DOMContentLoaded", async () => {
   // Initialize star input and load reviews
   initStarInput();
   await loadReviews();
+  const openReviews = document.getElementById("openReviews");
+  const dropReviews = document.getElementById("Dropreviews");
 
+  openReviews.addEventListener("click", () => {
+    openReviews.classList.toggle("open");
+    dropReviews.classList.toggle("open");
+  });
+  openReviews.setAttribute("tabindex", "0");
+  openReviews.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      openReviews.click();
+    }
+  });
   // Wire review form submit (single place)
   const f = document.getElementById("reviewForm");
   if (f) {
@@ -187,7 +200,9 @@ async function renderProductRating() {
   if (ratingBoxEl) {
     if (count && count > 0) {
       ratingBoxEl.innerHTML = `
-        <span class="rating-value">${rating.toFixed(1)}<span style="color: gold">★</span></span>
+        <span class="rating-value">${rating.toFixed(
+          1
+        )}<span style="color: gold">★</span></span>
         <span class="rating-count">| ${count}</span>
       `;
     } else {
@@ -403,14 +418,30 @@ function renderReviews(reviews) {
   container.innerHTML = "";
 
   reviews.forEach((r) => {
-    container.innerHTML += `
-      <div class="review">
-        <strong>${r.name}</strong>
-        <div class="review-stars">${r.rating.toFixed(1)}</div>
-        <p>${r.review}</p>
-        <small>${new Date(r.created_at).toLocaleDateString()}</small>
-      </div>
-    `;
+    const div = document.createElement("div");
+    div.className = "review";
+
+    const strong = document.createElement("strong");
+    strong.textContent = r.name || "Anonymous";
+
+    const stars = document.createElement("div");
+    stars.className = "review-stars";
+    const rating = Number(r.rating) || 0;
+    stars.textContent = rating.toFixed(1);
+
+    const p = document.createElement("p");
+    p.textContent = r.review || "";
+
+    const small = document.createElement("small");
+    const ts = r.created_at ? new Date(r.created_at) : new Date();
+    small.textContent = ts.toLocaleDateString();
+
+    div.appendChild(strong);
+    div.appendChild(stars);
+    div.appendChild(p);
+    div.appendChild(small);
+
+    container.appendChild(div);
   });
 }
 

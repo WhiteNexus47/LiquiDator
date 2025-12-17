@@ -397,3 +397,48 @@ window.uiConfirm = function (message, title = "Confirm") {
     };
   });
 };
+
+async function bindConfigLinks() {
+  // Wait until config is loaded
+  if (window.configReady) {
+    try {
+      await window.configReady;
+    } catch (_) {}
+  }
+
+  const map = {
+    email: {
+      value: window.CONFIG?.EMAIL_TO,
+      href: (v) =>
+        `mailto:${v}?subject=${encodeURIComponent("Support request")}`,
+    },
+    phone: {
+      value: window.CONFIG?.PHONE_TO,
+      href: (v) => `tel:${v}`,
+    },
+    whatsapp: {
+      value: window.CONFIG?.WHATSAPP_TO,
+      href: (v) =>
+        `https://wa.me/${v}?text=${encodeURIComponent(
+          "Quick inquiry\n\nHi, I’d like to know more about your products."
+        )}`,
+    },
+  };
+
+  document.querySelectorAll("[data-config-link]").forEach((el) => {
+    const type = el.dataset.configLink;
+    const cfg = map[type];
+
+    if (!cfg || !cfg.value) {
+      el.style.pointerEvents = "none";
+      el.style.opacity = "0.6";
+      return;
+    }
+
+    el.href = cfg.href(cfg.value);
+
+    if (!el.textContent.trim()) {
+      el.textContent = cfg.value;
+    }
+  });
+}

@@ -93,10 +93,14 @@ body {
     height: 20px;
 }
 
-/* Email */
 #sendEmailBtn {
     background: #ffffff;
     border: 1px solid #e3d6c7;
+}
+
+#sendEmailBtn i {
+    color: #b20f0c;
+    font-size: 1.5rem;
 }
 
 #sendEmailBtn:hover {
@@ -104,10 +108,15 @@ body {
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
 }
 
-/* WhatsApp */
+/* WhatsApp button */
 #sendWhatsappBtn {
     background: #25d366;
     color: #fff;
+}
+
+#sendWhatsappBtn i {
+    font-size: 1rem;
+    color: white;
 }
 
 #sendWhatsappBtn:hover {
@@ -368,23 +377,41 @@ header {
     text-decoration: none;
     font-size: 1.1rem;
     color: #4b2e17;
-    font-family: "Arial", sans-serif;
+    font-family: "Times New Roman", Times, serif;
     padding: 12px 0;
     border-bottom: 1px solid rgba(75, 46, 23, 0.06);
 }
 
+.nav-mobile .nav-item.active {
+    color: var(--caramel);
+    font-weight: 700;
+    transform: translateX(10px);
+}
+
+.nav-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-item i {
+    opacity: 0;
+    transition: opacity .15s ease;
+}
+
+.nav-item.active i {
+    opacity: 1;
+}
+
 .nav-mobile.open {
     max-height: 320px;
-    /* enough to show items */
     padding: 12px 25px;
 }
 
-/* Small tweak for header icons when menu is open to avoid overlap */
 #menuToggle.active {
     z-index: 1200;
 }
 
-/* Menu icon animation */
 #menuToggle.active span:nth-child(1) {
     transform: translateY(9px) rotate(45deg);
 }

@@ -20,6 +20,11 @@
             margin-top: 10px;
         }
 
+        .icon-btn,
+        .cart-total {
+            display: none;
+        }
+
         .contact-wrapper {
             display: flex;
             gap: 3rem;
@@ -63,15 +68,18 @@
             color: var(--brown);
         }
 
-        .contact-option p {
+        .contact-option a {
             font-size: 0.95rem;
             color: var(--coffee);
+            cursor: pointer;
         }
 
-        .contact-option p a {
-            font-size: 0.95rem;
-            color: var(--coffee);
+        .contact-option a {
             text-decoration: none;
+        }
+
+        .contact-option a:hover {
+            text-decoration: underline;
         }
 
         .contact-right {
@@ -166,19 +174,20 @@
 
                 <div class="contact-option">
                     <h3>Email</h3>
-                    <a id="emailReturnLink" href="#">Email Us</a>
+                    <a data-config-link="email">Email Us</a>
                 </div>
                 <div class="contact-option">
                     <h3>Phone</h3>
-                    <p><a href="tel:+15307659545">+1 (530) 765-9545</a></p>
+                    <a data-config-link="phone">+1 (530) 765-9545</a>
+                </div>
+                <div class="contact-option">
+                    <h3>WhatsApp</h3>
+                    <a data-config-link="whatsapp">+1 (530) 765-9545</a>
                 </div>
                 <div class="contact-option">
                     <h3>Address</h3>
-                    <p>123 Main Street, City, Country</p>
-                </div>
-                <div class="contact-option">
-                    <h3>Live Chat</h3>
-                    <p>Chat with our support team instantly.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=120+N+Main+Cross+St,+Louisa,+KY+41230,+United+States"
+                        target="_blank" rel="noopener">120 N Main Cross St, Louisa, KY 41230, United States</a>
                 </div>
             </div>
 
@@ -204,20 +213,6 @@
 
     <script defer src="assets/js/main.js"></script>
     <script defer src="assets/js/utils.js"></script>
-    <script>
-        const emailEl = document.getElementById("emailReturnLink");
-        const phoneEl = document.querySelector('a[href^="tel:"]');
-
-        if (emailEl && window.CONFIG.EMAIL_TO) {
-            emailEl.href = `mailto:${window.CONFIG.EMAIL_TO}`;
-            emailEl.textContent = window.CONFIG.EMAIL_TO;
-        }
-
-        if (phoneEl && window.CONFIG.PHONE_TO) {
-            phoneEl.href = `tel:${window.CONFIG.PHONE_TO}`;
-            phoneEl.textContent = window.CONFIG.PHONE_TO;
-        }
-    </script>
 </body>
 
 </html>

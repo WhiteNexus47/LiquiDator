@@ -82,17 +82,8 @@
   gap: 5px;
 }
 
-.payment-methods h3,
-.payment-methods .payment-note {
+.payment-methods h3 {
   grid-column: 1 / -1;
-}
-
-.payment-note {
-  font-size: 0.85rem;
-  color: #6b5d56;
-  margin-top: 6px;
-  line-height: 1.5;
-  text-align: center;
 }
 
 .delivery-note {

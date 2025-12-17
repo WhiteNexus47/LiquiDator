@@ -192,15 +192,15 @@ function setupShopControls() {
 
     // Re-use the main applyAllFilters flow so price combines with other checkboxes/sorts
     applyAllFilters(priceFiltered);
-
     closeAllDropdowns();
+    closeSidebar();
   });
 
   // ===== CATEGORY FILTER =====
   document.querySelectorAll("#categoryPanel span").forEach((span) => {
     span.addEventListener("click", () => {
       const cat = span.dataset.cat;
-      
+
       if (cat == "all") {
         filteredProducts = [...allProducts];
       } else {
@@ -209,6 +209,7 @@ function setupShopControls() {
 
       renderProductsPage();
       closeAllDropdowns();
+      closeSidebar();
     });
   });
 
@@ -219,15 +220,17 @@ function setupShopControls() {
   const sidebar = document.getElementById("shopSidebar");
   const closeBtn = document.getElementById("closeSidebarBtn");
 
-  closeBtn.addEventListener("click", () => {
-    sidebar.classList.remove("active");
-    document.body.classList.remove("no-scroll");
-  });
+  closeBtn.addEventListener("click", closeSidebar);
 
   openBtn.addEventListener("click", () => {
     sidebar.classList.toggle("active");
     document.body.classList.toggle("no-scroll");
   });
+
+  function closeSidebar() {
+    sidebar.classList.remove("active");
+    document.body.classList.remove("no-scroll");
+  }
 
   shopSearch.addEventListener("input", () => {
     const text = shopSearch.value.toLowerCase().trim();
@@ -253,13 +256,37 @@ function setupShopControls() {
 
     liveResults.innerHTML = results
       .slice(0, 6)
-      .map((r) => `<div class="live-item">${r.name}</div>`)
+      .map(
+        (r) => `
+        <div class="live-item" data-name="${r.name}">
+          ${r.name}
+        </div>
+      `
+      )
       .join("");
 
     liveResults.style.display = "block";
 
     filteredProducts = results;
     renderProductsPage();
+  });
+
+  shopSearch.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      liveResults.style.display = "none";
+      closeSidebar();
+    }
+  });
+
+  // Click handler for live results (added once)
+  liveResults.addEventListener("click", (e) => {
+    const item = e.target.closest(".live-item");
+    if (!item) return;
+
+    shopSearch.value = item.dataset.name;
+    liveResults.style.display = "none";
+    closeSidebar();
   });
 
   // Close live results when clicking outside

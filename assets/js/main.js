@@ -28,6 +28,7 @@ async function loadAlerts() {
 window.addEventListener("DOMContentLoaded", async () => {
   await loadComponent("header", "components/header.html");
   await loadComponent("footer", "components/footer.html");
+  if (typeof bindConfigLinks === "function") await bindConfigLinks();
   await loadAlerts();
 
   initCartButton();

@@ -181,42 +181,30 @@ function buildOrderMessage(order) {
     .join("\n");
 
   return `
-==============================
-NEW ORDER – Prime Liquidator
-==============================
+NEW ORDER – Prime Liquidators
 
 Order ID: ${order.orderId}
 Order Date: ${order.date}
 
 --------------------------------
 CUSTOMER DETAILS
---------------------------------
 Name   : ${order.customer.name}
 Email  : ${order.customer.email}
 
---------------------------------
 DELIVERY ADDRESS
---------------------------------
 ${order.address}
 
---------------------------------
 PAYMENT METHOD
---------------------------------
 ${order.paymentMethod}
 
---------------------------------
 ORDER ITEMS
---------------------------------
 ${itemLines}
 
 --------------------------------
 ORDER TOTAL
---------------------------------
 TOTAL : $${order.total}
 
---------------------------------
 STATUS
---------------------------------
 Payment pending – order will be confirmed after verification
 `.trim();
 }
