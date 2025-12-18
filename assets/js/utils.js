@@ -1,30 +1,24 @@
+/* =============================
+   GLOBAL PUBLIC CONFIG
+   ============================= */
+(function () {
+  // Prevent overwriting if already defined
+  if (window.CONFIG) return;
+
+  window.CONFIG = {
+    EMAIL_TO: "liquidatorsprime2@gmail.com",
+    PHONE_TO: "15307659545",
+    WHATSAPP_TO: "15307659545",
+  };
+
+  // Optional ready promise (keeps your existing pattern intact)
+  window.configReady = Promise.resolve(window.CONFIG);
+})();
+
 async function loadProducts() {
   const response = await fetch("data/product.json");
   return await response.json();
 }
-
-window.configReady = (async function () {
-  window.CONFIG = {
-    WHATSAPP_TO: "",
-    EMAIL_TO: "",
-    PHONE_TO: "",
-  };
-
-  try {
-    const res = await fetch("/.netlify/functions/get_config");
-    if (!res.ok) throw new Error("Config fetch failed");
-
-    const data = await res.json();
-
-    window.CONFIG = {
-      WHATSAPP_TO: data.whatsapp_to || "",
-      EMAIL_TO: data.email_to || "",
-      PHONE_TO: data.phone_to || "",
-    };
-  } catch (err) {
-    console.warn("Config load failed, using empty config", err);
-  }
-})();
 
 async function renderProducts(items, containerId) {
   const container = document.getElementById(containerId);

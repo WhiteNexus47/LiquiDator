@@ -16,7 +16,7 @@
 
     <section class="checkout-page">
         <div class="checkout-container">
-            <div class="left-info-main">
+            <div class="left-info-main" id="leftInfoMain">
                 <div class="left-info">
                     <h2>Delivery Details</h2>
                     <div class="delivery-form">
@@ -102,10 +102,12 @@
                             Bank Transfer
                         </label>
 
-                        <label class="delivery-confirm">
-                            <input type="checkbox" required>
-                            I understand that shipping costs will be confirmed separately
-                        </label>
+                        <div class="delivery-confirm">
+                            <input type="checkbox" id="shippingConfirm">
+                            <label for="shippingConfirm">
+                                I understand that shipping costs will be confirmed separately
+                            </label>
+                        </div>
 
                         <div class="delivery-note">
                             <strong>Shipping & Delivery:</strong>
@@ -114,7 +116,8 @@
                             on location, order size, and delivery method.
                         </div>
                     </div>
-                    <button id="placeOrderBtn" class="place-order-btn" disabled><i class='bx  bxs-shopping-bag'></i> Place
+                    <button id="placeOrderBtn" class="place-order-btn" disabled><i class='bx  bxs-shopping-bag'></i>
+                        Place
                         Order</button>
                 </div>
             </div>
@@ -144,7 +147,7 @@
             <button type="button" class="close" onclick="closeModal()">Cancel</button>
         </div>
     </div>
-    
+
     <div id="loadingOverlay" class="loading hidden">
         <div class="spinner"></div>
         <p id="loadingText">Processing your order…</p>
@@ -152,8 +155,9 @@
     </div>
 
     <script defer src="assets/js/utils.js"></script>
-    <script defer src="assets/js/main.js"></script>
     <script defer src="assets/js/checkout.js"></script>
+    <script defer src="assets/js/main.js"></script>
+
 </body>
 
 </html>

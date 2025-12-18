@@ -5,18 +5,59 @@
 let pendingOrder = null;
 let loadingTimeout = null;
 
+function scrollToField(el) {
+  if (!el) return;
+  const container =
+    document.getElementById("leftInfoMain") ||
+    document.querySelector(".left-info-main");
+
+  if (container && container.scrollHeight > container.clientHeight) {
+    const cRect = container.getBoundingClientRect();
+    const eRect = el.getBoundingClientRect();
+
+    container.scrollBy({
+      top: eRect.top - cRect.top - container.clientHeight / 2,
+      behavior: "smooth",
+    });
+  } else {
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  el.focus({ preventScroll: true });
+}
+
 // Form refs
 let cFirstName, cLastName, cEmail, cStreet, cCity, cZip, cCountry, cAdditional;
 
-window.addEventListener("DOMContentLoaded", async () => {
+const FIELDS_TO_SAVE = [
+  "cFirstName",
+  "cLastName",
+  "cEmail",
+  "cCountry",
+  "cStreet",
+  "cCity",
+  "cZip",
+];
 
+window.addEventListener("DOMContentLoaded", async () => {
   if (window.configReady) {
     await window.configReady;
   }
 
+  FIELDS_TO_SAVE.forEach((id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    el.addEventListener("input", () => {
+      const saved = JSON.parse(localStorage.getItem("checkoutInfo")) || {};
+      saved[id] = el.value;
+      localStorage.setItem("checkoutInfo", JSON.stringify(saved));
+    });
+  });
+
   // Absolute safety fallback
   window.CONFIG = window.CONFIG || {};
-  
+
   cFirstName = document.getElementById("cFirstName");
   cLastName = document.getElementById("cLastName");
   cEmail = document.getElementById("cEmail");
@@ -26,6 +67,12 @@ window.addEventListener("DOMContentLoaded", async () => {
   cCountry = document.getElementById("cCountry");
   cAdditional = document.getElementById("cAdditional");
 
+  const savedInfo = JSON.parse(localStorage.getItem("checkoutInfo")) || {};
+  Object.entries(savedInfo).forEach(([id, value]) => {
+    const el = document.getElementById(id);
+    if (el && !el.value) el.value = value;
+  });
+
   renderCheckoutItems();
   updateTotal();
   if (typeof updateCartBadge === "function") {
@@ -34,20 +81,52 @@ window.addEventListener("DOMContentLoaded", async () => {
   hideLoading();
   disableCheckoutButtons(false);
 
-  document.getElementById("placeOrderBtn").addEventListener("click", openModal);
+  const placeBtn = document.getElementById("placeOrderBtn");
+  if (placeBtn) placeBtn.addEventListener("click", openModal);
 
-  document.getElementById("sendEmailBtn").addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    sendOrder("email");
-  });
+  const emailBtn = document.getElementById("sendEmailBtn");
+  if (emailBtn) {
+    emailBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      sendOrder("email");
+    });
+  }
 
-  document.getElementById("sendWhatsappBtn").addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    sendOrder("whatsapp");
-  });
+  const waBtn = document.getElementById("sendWhatsappBtn");
+  if (waBtn) {
+    waBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      sendOrder("whatsapp");
+    });
+  }
 });
+
+
+
+function showFieldError(input, message) {
+  clearFieldError(input);
+
+  input.classList.add("input-error");
+
+  const error = document.createElement("div");
+  error.className = "field-error";
+  error.textContent = message;
+
+  const parent = input.closest(".input-group, .name-field") || input.parentElement || document.body;
+  parent.appendChild(error);
+}
+
+function clearFieldError(input) {
+  if (!input) return;
+
+  input.classList.remove("input-error");
+
+  const parent = input.closest(".input-group, .name-field");
+  const existing = parent?.querySelector(".field-error");
+  if (existing) existing.remove();
+}
 
 // ----------------------------
 // Modal helpers
@@ -59,19 +138,18 @@ async function openModal() {
 
   console.log("openModal: built order", order);
 
-  const ok = await uiConfirm(
-    "Do you want to place this order and proceed?",
-    "Confirm Order"
-  );
+  const ok = window.uiConfirm
+    ? await uiConfirm("Do you want to place this order and proceed?", "Confirm Order")
+    : confirm("Do you want to place this order and proceed?");
   if (!ok) return;
 
   pendingOrder = order;
   console.log("openModal: pendingOrder set", pendingOrder);
-  document.getElementById("messageModal").classList.remove("hidden");
+  document.getElementById("messageModal")?.classList.remove("hidden");
 }
 
 function closeModal() {
-  document.getElementById("messageModal").classList.add("hidden");
+  document.getElementById("messageModal")?.classList.add("hidden");
 }
 
 // ----------------------------
@@ -83,6 +161,7 @@ function getCart() {
 
 function renderCheckoutItems() {
   const container = document.getElementById("checkoutItems");
+  if (!container) return;
   const cart = getCart();
 
   if (!cart.length) {
@@ -111,6 +190,7 @@ function renderCheckoutItems() {
 
 function updateTotal() {
   const totalEl = document.getElementById("checkoutTotal");
+  if (!totalEl) return;
   const cart = getCart();
   const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
   totalEl.textContent = total.toFixed(2);
@@ -133,13 +213,56 @@ async function buildOrderPayload() {
     'input[name="paymentMethod"]:checked'
   )?.value;
 
-  if (!first || !last || !email || !street || !city || !zip || !country) {
-    await uiAlert("Please fill all required fields.");
+  let valid = true;
+  let firstInvalid = null;
+
+  function invalidateField(input, message) {
+    showFieldError(input, message);
+    if (!firstInvalid) firstInvalid = input;
+    valid = false;
+  }
+
+  // Clear previous errors
+  [cFirstName, cLastName, cEmail, cStreet, cCity, cZip, cCountry].forEach(
+    clearFieldError
+  );
+
+  if (!first) invalidateField(cFirstName, "First name is required");
+  if (!last) invalidateField(cLastName, "Last name is required");
+  if (!email) invalidateField(cEmail, "Email or contact is required");
+  if (!country) invalidateField(cCountry, "Country is required");
+  if (!street) invalidateField(cStreet, "Street address is required");
+  if (!city) invalidateField(cCity, "City is required");
+  if (!zip) invalidateField(cZip, "ZIP / Postcode is required");
+
+  if (!valid) {
+    scrollToField(firstInvalid);
     return null;
   }
 
   if (!paymentMethod) {
     await uiAlert("Please select a payment method.");
+    const pm = document.querySelector(".payment-methods");
+    if (pm) scrollToField(pm);
+    return null;
+  }
+
+  const shippingConfirm = document.getElementById("shippingConfirm");
+  const confirmWrapper =
+    shippingConfirm?.closest(".delivery-confirm") ||
+    document.querySelector(".delivery-confirm") ||
+    document.body;
+
+  // Remove previous error
+  confirmWrapper.querySelector(".field-error")?.remove();
+
+  if (!shippingConfirm || !shippingConfirm.checked) {
+    const error = document.createElement("div");
+    error.className = "field-error";
+    error.textContent = "You must confirm shipping terms to proceed";
+    confirmWrapper.appendChild(error);
+
+    scrollToField(shippingConfirm || confirmWrapper);
     return null;
   }
 
@@ -181,7 +304,7 @@ function buildOrderMessage(order) {
     .join("\n");
 
   return `
-NEW ORDER – Prime Liquidators
+NEW ORDER — Prime Liquidators
 
 Order ID: ${order.orderId}
 Order Date: ${order.date}
@@ -205,7 +328,7 @@ ORDER TOTAL
 TOTAL : $${order.total}
 
 STATUS
-Payment pending – order will be confirmed after verification
+Payment pending — we will confirm your order and shipping costs after verification.
 `.trim();
 }
 
@@ -213,19 +336,10 @@ Payment pending – order will be confirmed after verification
 // Send order
 // ----------------------------
 async function sendOrder(channel) {
-  console.log("sendOrder called", channel, "pendingOrder:", pendingOrder);
-
-  // If pendingOrder is missing (e.g. something cleared it), try to rebuild
-  // the payload from the form so the user action still works.
   let order = pendingOrder;
   if (!order) {
     order = await buildOrderPayload();
-    if (!order) {
-      await uiAlert(
-        "Order information is missing. Please complete the form and try again."
-      );
-      return;
-    }
+    if (!order) return;
     pendingOrder = order;
   }
 
@@ -236,52 +350,33 @@ async function sendOrder(channel) {
   const message = buildOrderMessage(order);
 
   try {
-    const endpoint =
-      channel === "email"
-        ? "/.netlify/functions/send_email"
-        : "/.netlify/functions/send_whatsapp";
-
-    const res = await fetch(endpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        order: pendingOrder,
-        message,
-      }),
-    });
-
-    if (!res.ok) throw new Error("Backend failed");
-
-    localStorage.removeItem("cart");
-    window.location.href = "thankyou.html";
-  } catch (err) {
-    console.warn("Backend failed, using fallback", err);
-    hideLoading();
-
-    await uiAlert(
-      "Automatic sending failed. We’ll open a manual option so your order is not lost.",
-      "Manual Send"
-    );
-
     if (channel === "whatsapp") {
-      const phone = window.CONFIG?.WHATSAPP_TO;
-      window.open(
-        `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
-        "_blank"
-      );
-    } else {
-      const email = window.CONFIG?.EMAIL_TO;
-      if (email) {
-        window.location.href = `mailto:${email}?subject=Order ${
-          pendingOrder.orderId
-        }&body=${encodeURIComponent(message)}`;
-      } else {
-        await uiAlert(
-          "Email sending failed. Please use WhatsApp to complete your order."
-        );
-      }
+      openWhatsappOrder(message);
     }
+
+    if (channel === "email") {
+      openEmailOrder(message);
+    }
+
+      // Clear cart safely
+    localStorage.removeItem("cart");
+    // refresh UI
+    renderCheckoutItems();
+    updateTotal();
+    if (typeof updateCartBadge === "function") updateCartBadge();
+
+    // DO NOT force redirect immediately
+    // Let the external app take over
+    setTimeout(async () => {
+      hideLoading();
+      await uiAlert(
+        "Order process initiated. Please complete the order in the opened app."
+      );
+    }, 1200);
+  } catch (err) {
+    hideLoading();
     disableCheckoutButtons(false);
+    await uiAlert("Could not open email or WhatsApp.");
   }
 }
 
@@ -290,15 +385,15 @@ function showLoading() {
   const cancelBtn = document.getElementById("loadingCancelBtn");
   const text = document.getElementById("loadingText");
 
-  cancelBtn.classList.add("hidden");
-  text.textContent = "Processing your order…";
+  cancelBtn?.classList.add("hidden");
+  if (text) text.textContent = "Processing your order…";
 
-  overlay.classList.remove("hidden");
+  overlay?.classList.remove("hidden");
 
   // After 10 seconds, allow escape
   loadingTimeout = setTimeout(() => {
-    text.textContent = "This is taking longer than expected.";
-    cancelBtn.classList.remove("hidden");
+    if (text) text.textContent = "This is taking longer than expected.";
+    cancelBtn?.classList.remove("hidden");
   }, 10000);
 }
 
@@ -306,11 +401,48 @@ function hideLoading() {
   clearTimeout(loadingTimeout);
   loadingTimeout = null;
 
-  document.getElementById("loadingOverlay").classList.add("hidden");
+  const overlay = document.getElementById("loadingOverlay");
+  overlay?.classList.add("hidden");
 }
 
 function disableCheckoutButtons(disabled = true) {
-  document.getElementById("placeOrderBtn").disabled = disabled;
-  document.getElementById("sendEmailBtn").disabled = disabled;
-  document.getElementById("sendWhatsappBtn").disabled = disabled;
+  document.getElementById("placeOrderBtn")?.disabled == disabled;
+  document.getElementById("sendEmailBtn")?.disabled == disabled;
+  document.getElementById("sendWhatsappBtn")?.disabled == disabled;
 }
+
+function openWhatsappOrder(message) {
+  const phone = window.CONFIG?.WHATSAPP_TO;
+  if (!phone) {
+    uiAlert("WhatsApp contact is not configured.");
+    return;
+  }
+
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+  window.open(url, "_blank");
+}
+
+function openEmailOrder(message) {
+  const email = window.CONFIG?.EMAIL_TO;
+  if (!email) {
+    uiAlert("Email contact is not configured.");
+    return;
+  }
+
+  const subject = "New Order – Prime Liquidators";
+  const body = encodeURIComponent(message);
+
+  window.location.href = `mailto:${email}?subject=${encodeURIComponent(
+    subject
+  )}&body=${body}`;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const cancelBtn = document.getElementById("loadingCancelBtn");
+  if (!cancelBtn) return;
+
+  cancelBtn.addEventListener("click", () => {
+    hideLoading();
+    disableCheckoutButtons(false);
+  });
+});

@@ -103,16 +103,20 @@
   grid-column: 1 / -1;
   display: flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: 10px;
   font-size: 0.85rem;
   color: var(--brown-dark);
-  margin-top: 6px;
+  margin-top: 12px;
 }
 
 .delivery-confirm input[type="checkbox"] {
+  margin-top: 3px;
   accent-color: var(--caramel);
-  border-color: #bbb;
-  margin-right: 10px;
+}
+
+.delivery-confirm label {
+  cursor: pointer;
+  line-height: 1.4;
 }
 
 .payment-methods input[type="radio"] {
@@ -390,4 +394,20 @@
   .left-info-main {
     width: 310px;
   }
+}
+
+.field-error {
+  color: #c0392b;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.input-error {
+  border-color: #c0392b !important;
+  animation: pulse 0.4s ease-in-out;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(192,57,43,0.4); }
+  100% { box-shadow: 0 0 0 6px rgba(192,57,43,0); }
 }
