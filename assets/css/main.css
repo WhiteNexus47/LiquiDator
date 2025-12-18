@@ -705,12 +705,9 @@ header {
     justify-content: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: background 0.3s ease;
-}
-
-.chat-btn img {
-    width: 28px;
-    height: 28px;
-    filter: invert(1);
+    color: #fff;
+    font-size: 1.3rem;
+    text-decoration: none;
 }
 
 /* BACK TO TOP BUTTON */
@@ -1152,4 +1149,11 @@ header {
 
 .contact-btn:hover {
     background: #8a6a4e;
+}
+
+.empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--brown-dark);
+    font-size: large;
 }

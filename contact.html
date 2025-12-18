@@ -127,7 +127,7 @@
             cursor: pointer;
             font-size: 1rem;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            align-self: flex-start;
+            align-self: center;
         }
 
         .contact-right button:hover {
@@ -173,15 +173,15 @@
 
                 <div class="contact-option">
                     <h3>Email</h3>
-                    <a data-config-link="email">Email Us</a>
+                    <a data-config-link="email" target="_blank">Email Us</a>
                 </div>
                 <div class="contact-option">
                     <h3>Phone</h3>
-                    <a data-config-link="phone">+1 (530) 765-9545</a>
+                    <a data-config-link="phone" target="_blank">+1 (530) 765-9545</a>
                 </div>
                 <div class="contact-option">
                     <h3>WhatsApp</h3>
-                    <a data-config-link="whatsapp">+1 (530) 765-9545</a>
+                    <a data-config-link="whatsapp" target="_blank">+1 (530) 765-9545</a>
                 </div>
                 <div class="contact-option">
                     <h3>Address</h3>
@@ -192,16 +192,17 @@
 
             <!-- RIGHT SIDE -->
             <div class="contact-right">
-                <form>
+                <form id="contactForm">
                     <div class="name-row">
-                        <input type="text" placeholder="First Name" required>
-                        <input type="text" placeholder="Last Name" required>
+                        <input type="text" id="contactFirstName" placeholder="First Name*" required>
+                        <input type="text" id="contactLastName" placeholder="Last Name*" required>
                     </div>
-                    <input type="email" placeholder="Email" required>
-                    <textarea rows="5" placeholder="Message" required></textarea>
+                    <input type="email" id="contactEmail" placeholder="Email*" required>
+                    <input type="text" id="contactSubject" placeholder="Subject*" required>
+                    <textarea rows="5" id="contactMessage" placeholder="Message*" required></textarea>
                     <button type="submit">Send Message</button>
                     <p class="privacy-note">
-                        Your information is safe with us. Read our <a href="Others.html#privacy">Privacy Policy</a>.
+                        Your browser may auto-fill some of your information. We respect your privacy — see our <a href="Others.html#privacy">Privacy Policy</a>.
                     </p>
                 </form>
             </div>
@@ -212,6 +213,54 @@
 
     <script defer src="assets/js/main.js"></script>
     <script defer src="assets/js/utils.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            if (window.configReady) {
+                try { await window.configReady; } catch (_) { }
+            }
+
+            const form = document.getElementById("contactForm");
+            if (!form) return;
+            const saved = JSON.parse(localStorage.getItem("checkoutInfo")) || {};
+            if (saved.cFirstName) document.getElementById("contactFirstName").value = saved.cFirstName;
+            if (saved.cLastName) document.getElementById("contactLastName").value = saved.cLastName;
+            if (saved.cEmail) document.getElementById("contactEmail").value = saved.cEmail;
+
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+
+                const first = document.getElementById("contactFirstName")?.value.trim();
+                const last = document.getElementById("contactLastName")?.value.trim();
+                const email = document.getElementById("contactEmail")?.value.trim();
+                const message = document.getElementById("contactMessage")?.value.trim();
+                const subject = document.getElementById("contactSubject")?.value.trim() || "General Inquiry";
+
+                if (!first || !last || !email || !message) {
+                    alert("Please fill in all fields.");
+                    return;
+                }
+
+                const to = window.CONFIG?.EMAIL_TO;
+                if (!to) {
+                    alert("Contact email is not configured.");
+                    return;
+                }
+
+                const body = `
+Name: ${first} ${last}
+${email ? `Email: ${email}` : ''}
+
+Message:
+${message}
+`.trim();
+                const mailto = `mailto:${to}?subject=${encodeURIComponent(
+                    subject
+                )}&body=${encodeURIComponent(body)}`;
+
+                window.location.href = mailto;
+            });
+        });
+    </script>
 </body>
 
 </html>

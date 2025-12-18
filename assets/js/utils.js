@@ -431,7 +431,7 @@ async function bindConfigLinks() {
 
     el.href = cfg.href(cfg.value);
 
-    if (!el.textContent.trim()) {
+    if (!el.children.length && !el.textContent.trim()) {
       el.textContent = cfg.value;
     }
   });

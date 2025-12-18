@@ -34,7 +34,7 @@ function renderCartItems() {
           </div>
         </div>
 
-        <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+        <button class="remove-btn" onclick="removeItem(${index})"><i class='bxr bxs-trash'></i></button>
       </div>
     `
     )

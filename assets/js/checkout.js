@@ -372,6 +372,7 @@ async function sendOrder(channel) {
       await uiAlert(
         "Order process initiated. Please complete the order in the opened app."
       );
+      window.location.href = "shop.html";
     }, 1200);
   } catch (err) {
     hideLoading();
@@ -406,9 +407,13 @@ function hideLoading() {
 }
 
 function disableCheckoutButtons(disabled = true) {
-  document.getElementById("placeOrderBtn")?.disabled == disabled;
-  document.getElementById("sendEmailBtn")?.disabled == disabled;
-  document.getElementById("sendWhatsappBtn")?.disabled == disabled;
+  const place = document.getElementById("placeOrderBtn");
+  const email = document.getElementById("sendEmailBtn");
+  const wa = document.getElementById("sendWhatsappBtn");
+
+  if (place) place.disabled = disabled;
+  if (email) email.disabled = disabled;
+  if (wa) wa.disabled = disabled;
 }
 
 function openWhatsappOrder(message) {
