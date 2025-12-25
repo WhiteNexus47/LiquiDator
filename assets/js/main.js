@@ -184,7 +184,7 @@ function initBackToTop() {
   });
 
   window.addEventListener("scroll", () => {
-    btn.style.display = window.scrollY > 300 ? "flex" : "none";
+    btn.style.display = window.scrollY > 1000 ? "flex" : "none";
   });
 }
 

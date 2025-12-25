@@ -15,9 +15,13 @@
   window.configReady = Promise.resolve(window.CONFIG);
 })();
 
+// In-memory cache for product JSON to avoid repeated network requests
+let _PRODUCT_CACHE = null;
 async function loadProducts() {
+  if (_PRODUCT_CACHE) return _PRODUCT_CACHE;
   const response = await fetch("data/product.json");
-  return await response.json();
+  _PRODUCT_CACHE = await response.json();
+  return _PRODUCT_CACHE;
 }
 
 async function renderProducts(items, containerId) {
@@ -35,26 +39,29 @@ async function renderProducts(items, containerId) {
 
   const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  // Build HTML by fetching ratings per item sequentially to avoid
-  // a race of unresolved promises inside .map()
+  // Build HTML; we also set eager loading for the first few visible images
+  // to avoid images appearing late above-the-fold. `containerId` allows
+  // us to make this page-specific (shop page benefits most).
   const parts = [];
+  let idx = 0;
   for (const item of items) {
     let rating = 0;
     let count = 0;
     try {
-      const res = await getProductRating(item.id);
-      rating = res.rating || 0;
-      count = res.count || 0;
+      rating = 0;
+      count = 0;
     } catch (e) {
       // ignore and show zeros
     }
+
+    const isEager = containerId === "shopProductList" && idx < 6; // first 6 images eager
 
     parts.push(
       (() => {
         // Truncate name
         const rawName = String(item.name || "Untitled");
         const name = (
-          rawName.length > 16 ? rawName.slice(0, 40).trim() + "..." : rawName
+          rawName.length > 16 ? rawName.slice(0, 10).trim() + "..." : rawName
         ).toUpperCase();
 
         // Price & old price
@@ -65,11 +72,11 @@ async function renderProducts(items, containerId) {
         if (oldPrice && oldPrice > price) {
           const discount = Math.round((1 - price / oldPrice) * 100);
           discountHTML = `
-        <div class="p-discount">
-          <span class="p-discount-arrow">▼ ${discount}%</span>
-          <span class="p-old-price">$${oldPrice}</span>
-        </div>
-      `;
+            <div class="p-discount">
+              <span class="p-discount-arrow">${discount}% ▼</span>
+              <span class="p-old-price">$${oldPrice}</span>
+            </div>
+          `;
         }
 
         // Tag
@@ -87,10 +94,12 @@ async function renderProducts(items, containerId) {
         return `
       <article class="product-card" data-product-id="${
         item.id
-      }" onclick="openProduct(${item.id})" tabindex="0">
+      }" tabindex="0">
 
-        <div class="p-media">
-          <img src="${item.image}" alt="${name}" />
+        <div class="p-media" onclick="openProduct(${item.id})">
+          <img class="product-image" src="${item.image}" loading="${
+          isEager ? "eager" : "lazy"
+        }" alt="${name}" />
           <!-- Share Button -->
           <button class="p-share-btn" title="Share Product" onclick="event.stopPropagation(); shareProduct(${
             item.id
@@ -101,14 +110,15 @@ async function renderProducts(items, containerId) {
 
         <div class="p-body">
           ${tag}
-          <h3 class="p-name">${name}</h3>
+          <h3 class="p-name" onclick="openProduct(${item.id})" title="${rawName}">${name}</h3>
 
-          <div class="p-rating-box">
-            <span class="rating-value">${(rating || 0).toFixed(
-              1
-            )}<p class="star" style="display:inline; color: gold;">★</p></span>
-            <span class="rating-count">| ${count}</span>
-          </div>
+          <div class="p-rating-box" data-rating-for="${
+              item.id
+            }" aria-live="polite">
+            <!-- initial placeholder; hydrated later -->
+            <span class="rating-value">—<span class="star" style="color: gold;">★</span></span>
+            <span class="rating-count">| 0</span>
+          </div> 
 
           <div class="p-price-box">
             ${discountHTML}
@@ -125,9 +135,93 @@ async function renderProducts(items, containerId) {
     `;
       })()
     );
+    idx += 1;
   }
 
   container.innerHTML = parts.join("");
+}
+
+async function hydrateRatings(items) {
+  if (!items || !items.length) return;
+
+  // Try batched fetch if Supabase is available
+  if (typeof supabase !== "undefined" && supabase) {
+    try {
+      const ids = items.map((i) => Number(i.id));
+      // Query all ratings for visible product IDs in one call
+      const { data, error } = await supabase
+        .from("reviews")
+        .select("product_id, rating")
+        .in("product_id", ids);
+
+      if (!error && data) {
+        // Aggregate ratings by product_id
+        const map = data.reduce((acc, r) => {
+          const id = Number(r.product_id);
+          acc[id] = acc[id] || { sum: 0, count: 0 };
+          acc[id].sum += Number(r.rating) || 0;
+          acc[id].count += 1;
+          return acc;
+        }, {});
+
+        for (const item of items) {
+          const box = document.querySelector(
+            `.p-rating-box[data-rating-for="${item.id}"]`
+          );
+          if (!box) continue;
+
+          const stats = map[item.id];
+          if (stats && stats.count) {
+            const avg = stats.sum / stats.count;
+            box.innerHTML = `
+              <span class="rating-value">
+                ${avg.toFixed(1)}
+                <span class="star" style="color: gold;">★</span>
+              </span>
+              <span class="rating-count">| ${stats.count}</span>
+            `;
+          } else {
+            // no reviews
+            box.innerHTML = `
+              <span class="rating-value">—<span class="star" style="color: gold;">★</span></span>
+              <span class="rating-count">| 0</span>
+            `;
+          }
+        }
+
+        return;
+      }
+    } catch (err) {
+      // fallback to per-item fetch
+      console.warn(
+        "Batched rating fetch failed, falling back to per-item",
+        err
+      );
+    }
+  }
+
+  // Fallback: sequential per-item fetch (keeps compatibility)
+  for (const item of items) {
+    try {
+      const { rating, count } = await getProductRating(item.id);
+
+      const box = document.querySelector(
+        `.p-rating-box[data-rating-for="${item.id}"]`
+      );
+
+      if (!box) continue;
+
+      box.innerHTML = `
+        <span class="rating-value">
+          ${rating.toFixed(1)}
+          <span class="star" style="color: gold;">★</span>
+        </span>
+        <span class="rating-count">| ${count}</span>
+      `;
+    } catch (e) {
+      // ignore
+    }
+  }
 }
 
 function addRecentlyViewed(product) {

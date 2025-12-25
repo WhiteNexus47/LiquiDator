@@ -160,26 +160,22 @@
   position: absolute;
   top: 8px;
   right: 8px;
-  background: rgba(255, 255, 255, 0.85);
-  border: 0;
-  padding: 6px 8px;
-  border-radius: 8px;
+  background: rgba(82, 50, 5, 0.604);
+  border: none;
+  padding: 6px 7px;
+  border-radius: 5px;
   cursor: pointer;
   backdrop-filter: blur(4px);
-  display: grid;
-  place-items: center;
-  transition: transform 0.18s ease, background 0.18s ease;
-  z-index: 4;
 }
 
 .p-share-btn i {
-  font-size: 18px;
-  color: var(--brown);
+  font-size: 16px;
+  color: #ffffff;
+  transition: transform 0.2s ease;
 }
 
-.p-share-btn:hover {
-  transform: scale(1.06);
-  background: rgba(255, 255, 255, 1);
+.p-share-btn:hover i {
+  transform: scale(1.2);
 }
 
 .p-rating-box {
@@ -197,7 +193,8 @@
   z-index: 4;
 }
 
-.rating-value, .rating-count {
+.rating-value,
+.rating-count {
   font-size: 1rem;
 }
 
@@ -464,7 +461,7 @@
 }
 
 .review-dropdown.open {
-  max-height: 2000px; 
+  max-height: 2000px;
   opacity: 1;
 }
 

@@ -30,6 +30,7 @@ function renderProductsPage(page = 1) {
   noResultsContainer.style.display = "none";
   const itemsToShow = paginate(filteredProducts, page, perPage);
   renderProducts(itemsToShow, "shopProductList");
+  hydrateRatings(itemsToShow);
 
   renderPagination(
     filteredProducts.length,
@@ -59,7 +60,7 @@ function renderRecentlyViewed() {
     .map(
       (item) => `
       <div class="recent-item" onclick="openProduct(${item.id})">
-        <img src="${item.image}" alt="${item.name}">
+        <img src="${item.image}" loading="lazy" alt="${item.name}">
         <div class="recent-info">
           <span>${item.name.slice(0, 28)}...</span>
           <small>$${item.price}</small>
@@ -232,7 +233,16 @@ function setupShopControls() {
     document.body.classList.remove("no-scroll");
   }
 
-  shopSearch.addEventListener("input", () => {
+  // Debounce searches to avoid re-render storm while typing
+  function debounce(fn, wait = 200) {
+    let t = null;
+    return (...args) => {
+      clearTimeout(t);
+      t = setTimeout(() => fn(...args), wait);
+    };
+  }
+
+  shopSearch.addEventListener("input", debounce(() => {
     const text = shopSearch.value.toLowerCase().trim();
 
     if (text === "") {
@@ -269,7 +279,7 @@ function setupShopControls() {
 
     filteredProducts = results;
     renderProductsPage();
-  });
+  }));
 
   shopSearch.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {

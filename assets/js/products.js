@@ -299,7 +299,7 @@ function renderSimilar() {
       <article class="sim-card" onclick="openProduct(${item.id})">
         <div class="sim-media">
           ${discountHTML}
-          <img src="${item.image}" alt="${item.name}" />
+          <img src="${item.image}" loading="lazy" alt="${item.name}" />
           <button class="sim-view">View</button>
         </div>
         <div class="sim-body">
