@@ -9,7 +9,7 @@
 
 .product-page {
   max-width: 1200px;
-  margin: 120px auto 40px;
+  margin: 10px auto 40px;
   padding: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -142,40 +142,28 @@
 }
 
 .variant-list img {
-  width: 56px;
-  height: 56px;
-  border-radius: 8px;
+  width: 70px;
+  height: 70px;
   object-fit: cover;
   cursor: pointer;
-  border: 2px solid transparent;
-  transition: transform 0.18s ease, border-color 0.18s ease;
+  transition: filter 0.25s ease, opacity 0.25s ease, transform 0.2s ease;
 }
 
-.variant-list img:hover {
-  transform: scale(1.01);
-  border-color: var(--caramel);
+.variant-list img:not(.active) {
+  opacity: 0.55;
+  outline: 1px solid var(--brown);
 }
 
-.p-share-btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: rgba(82, 50, 5, 0.604);
-  border: none;
-  padding: 6px 7px;
-  border-radius: 5px;
-  cursor: pointer;
-  backdrop-filter: blur(4px);
+.variant-list img:focus-visible {
+  outline: 2px solid var(--brown);
 }
 
-.p-share-btn i {
-  font-size: 16px;
-  color: #ffffff;
-  transition: transform 0.2s ease;
-}
-
-.p-share-btn:hover i {
-  transform: scale(1.2);
+.variant-list img.active {
+  filter: none;
+  opacity: 1;
+  transform: scale(1.05);
+  outline: 2px solid var(--brown);
+  outline-offset: 2px;
 }
 
 .p-rating-box {
@@ -203,6 +191,10 @@
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.p-share-btn {
+    opacity: 1 !important;
 }
 
 .old-price {
@@ -622,7 +614,6 @@
 
   .product-page {
     grid-template-columns: 1fr;
-    margin: 40px auto 30px;
     padding: 15px;
   }
 
@@ -632,7 +623,6 @@
 
   .main-image {
     height: 340px;
-    max-width: 400px;
   }
 
   .variant-list img {

@@ -248,6 +248,61 @@ function updateAddBtnState() {
   }
 }
 
+/* =============================
+   VARIANTS: robust active state + slider behavior
+   Replaces renderVariants(), smoothImageSwitch(), and variant-nav handlers
+============================ */
+
+function normalizeHref(src) {
+  try {
+    return new URL(src, window.location.origin).href;
+  } catch (e) {
+    return src;
+  }
+}
+
+function setActiveVariantByHref(href) {
+  const main = document.getElementById("mainImage");
+  if (!main) return;
+
+  const normal = normalizeHref(href);
+
+  // Clear existing active classes
+  const all = document.querySelectorAll(".variant-list img");
+  all.forEach((i) => i.classList.remove("active"));
+
+  // Find matching thumbnail by normalized data-href
+  const match = Array.from(all).find(
+    (i) =>
+      i.dataset.hrefNormalized === normal || normalizeHref(i.src) === normal
+  );
+
+  if (match) {
+    match.classList.add("active");
+    // scroll to center the active thumbnail for better slider UX
+    try {
+      match.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest",
+      });
+    } catch (e) {}
+  } else {
+    // if no match found, fall back to first thumbnail
+    if (all[0]) all[0].classList.add("active");
+  }
+
+  // Smoothly update main image (preserves your fade)
+  // Avoid setting same src twice if already set
+  if (normalizeHref(main.src) === normal) return;
+  main.style.opacity = 0;
+  setTimeout(() => {
+    main.src = href;
+    // small timeout to allow image to paint before fade-in
+    setTimeout(() => (main.style.opacity = 1), 50);
+  }, 120);
+}
+
 function renderVariants() {
   const list = document.getElementById("variantList");
   if (!list) return;
@@ -257,27 +312,72 @@ function renderVariants() {
     ? product.variants
     : [product.image];
 
-  variants.forEach((src) => {
+  variants.forEach((src, index) => {
     const img = document.createElement("img");
     img.src = src;
-    img.onclick = () => smoothImageSwitch(src);
+
+    // store normalized href on dataset for reliable comparisons later
+    img.dataset.hrefNormalized = normalizeHref(src);
+
+    // keyboard accessibility
+    img.setAttribute("tabindex", "0");
+    img.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        img.click();
+      }
+    });
+
+    img.addEventListener("click", (e) => {
+      e.stopPropagation();
+      setActiveVariantByHref(src);
+    });
+
     list.appendChild(img);
   });
+
+  // Ensure the thumbnail that matches the current main image is active.
+  const main = document.getElementById("mainImage");
+  if (main && main.src) {
+    // main.src could be absolute already; normalize for comparison
+    setActiveVariantByHref(main.src);
+  } else {
+    // fallback: mark first thumbnail active and sync main
+    const first = list.querySelector("img");
+    if (first) {
+      first.classList.add("active");
+      if (main && !main.src) main.src = first.src;
+    }
+  }
 }
 
 function smoothImageSwitch(newSrc) {
-  const main = document.getElementById("mainImage");
-  document
-    .querySelectorAll(".variant-list img")
-    .forEach((i) => i.classList.toggle("active", i.src === newSrc));
-
-  if (!main) return;
-  main.style.opacity = 0;
-  setTimeout(() => {
-    main.src = newSrc;
-    main.style.opacity = 1;
-  }, 100);
+  // keep for backwards compatibility — delegate to setActiveVariantByHref
+  setActiveVariantByHref(newSrc);
 }
+
+/* Variant nav (prev/next) should actually move the active selection and update main image */
+document.querySelector(".variant-nav.prev")?.addEventListener("click", () => {
+  const list = document.getElementById("variantList");
+  if (!list) return;
+  const imgs = Array.from(list.querySelectorAll("img"));
+  if (!imgs.length) return;
+  const active = imgs.find((i) => i.classList.contains("active")) || imgs[0];
+  const idx = imgs.indexOf(active);
+  const prev = imgs[Math.max(0, idx - 1)];
+  if (prev) setActiveVariantByHref(prev.src);
+});
+
+document.querySelector(".variant-nav.next")?.addEventListener("click", () => {
+  const list = document.getElementById("variantList");
+  if (!list) return;
+  const imgs = Array.from(list.querySelectorAll("img"));
+  if (!imgs.length) return;
+  const active = imgs.find((i) => i.classList.contains("active")) || imgs[0];
+  const idx = imgs.indexOf(active);
+  const next = imgs[Math.min(imgs.length - 1, idx + 1)];
+  if (next) setActiveVariantByHref(next.src);
+});
 
 function renderSimilar() {
   const container = document.getElementById("similarList");
