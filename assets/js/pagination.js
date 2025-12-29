@@ -21,29 +21,33 @@ function renderPagination(totalItems, perPage, containerId, callback, currentPag
 
     if (totalPages <= 1) return;
 
-    const maxVisible = 5;
-    let start = Math.max(1, currentPage - 2);
+    // 📱 Mobile = 3, 💻 Desktop = 5
+    const isMobile = window.innerWidth <= 480;
+    const maxVisible = isMobile ? 3 : 5;
+
+    const half = Math.floor(maxVisible / 2);
+    let start = Math.max(1, currentPage - half);
     let end = Math.min(totalPages, start + maxVisible - 1);
 
-    // Shift window if near the end
+    // Adjust window near end
     if (end - start < maxVisible - 1) {
         start = Math.max(1, end - maxVisible + 1);
     }
 
-    // First page always shown if start > 1
+    // First page
     if (start > 1) {
         addPageBtn(container, 1, currentPage, callback);
-        addEllipsis(container);
+        if (start > 2) addEllipsis(container);
     }
 
-    // Main window
+    // Main pages
     for (let i = start; i <= end; i++) {
         addPageBtn(container, i, currentPage, callback);
     }
 
-    // Last page with ellipsis
+    // Last page
     if (end < totalPages) {
-        addEllipsis(container);
+        if (end < totalPages - 1) addEllipsis(container);
         addPageBtn(container, totalPages, currentPage, callback);
     }
 }

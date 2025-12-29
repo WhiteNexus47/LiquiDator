@@ -527,7 +527,7 @@ function renderReviews(reviews) {
     const stars = document.createElement("div");
     stars.className = "review-stars";
     const rating = Number(r.rating) || 0;
-    stars.textContent = rating.toFixed(1);
+    stars.innerHTML = `${rating.toFixed(1)} <span class="star">★</span>`;
 
     const p = document.createElement("p");
     p.textContent = r.review || "";

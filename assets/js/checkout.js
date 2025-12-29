@@ -103,8 +103,6 @@ window.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-
-
 function showFieldError(input, message) {
   clearFieldError(input);
 

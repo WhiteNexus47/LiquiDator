@@ -43,7 +43,6 @@ EXCLUDE_PREFIXES = {"card", "contact-bg", "logo", "web-logo", "home", "delv"}
 
 IMG_EXT_RE = re.compile(r"^(?P<name>.+?)(?P<num>\d+)?\.(?P<ext>[^.]+)$")
 
-
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser()
     p.add_argument(

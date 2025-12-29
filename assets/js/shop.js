@@ -1,5 +1,6 @@
 let allProducts = [];
 let filteredProducts = [];
+let currentPage = 1;
 
 window.addEventListener("DOMContentLoaded", async () => {
   allProducts = await loadProducts();
@@ -14,7 +15,8 @@ window.addEventListener("storage", (e) => {
   if (e.key === "recentlyViewed") renderRecentlyViewed();
 });
 
-function renderProductsPage(page = 1) {
+function renderProductsPage(page = currentPage) {
+  currentPage = page;
   const perPage = 12;
   const productContainer = document.getElementById("shopProductList");
   const paginationEl = document.getElementById("pagination");
@@ -36,7 +38,10 @@ function renderProductsPage(page = 1) {
     filteredProducts.length,
     perPage,
     "pagination",
-    renderProductsPage,
+    (page) => {
+      currentPage = page;
+      renderProductsPage(page);
+    },
     page
   );
 }
@@ -72,6 +77,7 @@ function renderRecentlyViewed() {
 }
 
 function setupShopControls() {
+  currentPage = 1;
   const filterBtn = document.getElementById("filterBtn");
   const categoryBtn = document.getElementById("categoryBtn");
 
@@ -135,7 +141,7 @@ function setupShopControls() {
     }
 
     filteredProducts = result;
-    renderProductsPage();
+    renderProductsPage(1);
   }
 
   [inStockOnly, premiumOnly, trendingOnly].forEach((cb) => {
@@ -208,7 +214,7 @@ function setupShopControls() {
         filteredProducts = allProducts.filter((p) => p.tag === cat);
       }
 
-      renderProductsPage();
+      renderProductsPage(1);
       closeAllDropdowns();
       closeSidebar();
     });
@@ -242,44 +248,47 @@ function setupShopControls() {
     };
   }
 
-  shopSearch.addEventListener("input", debounce(() => {
-    const text = shopSearch.value.toLowerCase().trim();
+  shopSearch.addEventListener(
+    "input",
+    debounce(() => {
+      const text = shopSearch.value.toLowerCase().trim();
 
-    if (text === "") {
-      liveResults.style.display = "none";
-      filteredProducts = allProducts;
-      renderProductsPage();
-      return;
-    }
+      if (text === "") {
+        liveResults.style.display = "none";
+        filteredProducts = allProducts;
+        renderProductsPage();
+        return;
+      }
 
-    const results = allProducts.filter((p) =>
-      p.name.toLowerCase().includes(text)
-    );
+      const results = allProducts.filter((p) =>
+        p.name.toLowerCase().includes(text)
+      );
 
-    if (results.length === 0) {
-      liveResults.innerHTML = `<div class="live-empty">No results found</div>`;
-      filteredProducts = [];
-      renderProductsPage();
-      liveResults.style.display = "block";
-      return;
-    }
+      if (results.length === 0) {
+        liveResults.innerHTML = `<div class="live-empty">No results found</div>`;
+        filteredProducts = [];
+        renderProductsPage();
+        liveResults.style.display = "block";
+        return;
+      }
 
-    liveResults.innerHTML = results
-      .slice(0, 6)
-      .map(
-        (r) => `
+      liveResults.innerHTML = results
+        .slice(0, 6)
+        .map(
+          (r) => `
         <div class="live-item" data-name="${r.name}">
           ${r.name}
         </div>
       `
-      )
-      .join("");
+        )
+        .join("");
 
-    liveResults.style.display = "block";
+      liveResults.style.display = "block";
 
-    filteredProducts = results;
-    renderProductsPage();
-  }));
+      filteredProducts = results;
+      renderProductsPage();
+    })
+  );
 
   shopSearch.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
@@ -308,7 +317,7 @@ function setupShopControls() {
 
   // When cart changes elsewhere, re-render products to update 'Added' state
   window.addEventListener("cartUpdated", () => {
-    renderProductsPage();
+    renderProductsPage(currentPage);
     if (typeof updateCartBadge === "function") updateCartBadge();
   });
 }

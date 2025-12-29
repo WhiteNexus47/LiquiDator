@@ -219,7 +219,7 @@
         "price": "600",
         "oldPrice": "659",
         "image": "assets/img/Stainless stell Cup Pallets.jpg",
-        "tag": "Kitchen",
+        "tag": "Household",
         "inStock": true,
         "premium": false,
         "trending": true,
@@ -616,7 +616,7 @@
         "price": "850",
         "oldPrice": "899",
         "image": "assets/img/Household Kitchen Appliances & Cooking Sets – Wholesale Pallet.jpg",
-        "tag": "Kitchen",
+        "tag": "Household",
         "inStock": true,
         "premium": false,
         "trending": true,
@@ -1084,7 +1084,6 @@
             "assets/img/Deal Alert! Makeup & Nail polish split7.jpeg"
         ]
     },
-
     {
         "id": 38,
         "name": "Hats Pallet For Sale – Big Style, Big Profits!",
@@ -1317,7 +1316,7 @@
         "price": "600",
         "oldPrice": "670",
         "image": "assets/img/MIXED KITCHEN APPLIANCES PALLET.jpeg",
-        "tag": "Kitchen",
+        "tag": "Household",
         "inStock": true,
         "premium": false,
         "trending": false,
@@ -1642,6 +1641,494 @@
             "assets/img/Tracksuits Pallet Sale2.jpeg",
             "assets/img/Tracksuits Pallet Sale3.jpeg",
             "assets/img/Tracksuits Pallet Sale4.jpeg"
+        ]
+    },
+    {
+        "id": 56,
+        "name": "An Entire Pallet Of Coffee Machines Loaded With Small Appliances",
+        "price": "15450",
+        "oldPrice": "16000",
+        "image": "assets/img/An entire pallet of coffee machines Loaded with small appliances.jpeg",
+        "tag": "Electronics",
+        "inStock": true,
+        "premium": false,
+        "trending": false,
+        "created": 20251229,
+        "description": "Loaded with small appliances An entire pallet of coffee machines",
+        "highlights": [
+            "Retail: $55,751 ",
+            "Cost: $15,450",
+            "Total 26 pallets",
+            "Each pallet £600",
+            "HBA, Cookware, Diapers,TVs, Toys, Cookware etc.",
+            "Great load for retail, check out the pics"
+        ],
+        "variants": [
+            "assets/img/An entire pallet of coffee machines Loaded with small appliances.jpeg",
+            "assets/img/An entire pallet of coffee machines Loaded with small appliances1.jpeg",
+            "assets/img/An entire pallet of coffee machines Loaded with small appliances2.jpeg",
+            "assets/img/An entire pallet of coffee machines Loaded with small appliances3.jpeg",
+            "assets/img/An entire pallet of coffee machines Loaded with small appliances4.jpeg",
+            "assets/img/An entire pallet of coffee machines Loaded with small appliances5.jpeg",
+            "assets/img/An entire pallet of coffee machines Loaded with small appliances6.jpeg",
+            "assets/img/An entire pallet of coffee machines Loaded with small appliances7.jpeg",
+            "assets/img/An entire pallet of coffee machines Loaded with small appliances8.jpeg",
+            "assets/img/An entire pallet of coffee machines Loaded with small appliances9.jpeg",
+            "assets/img/An entire pallet of coffee machines Loaded with small appliances10.jpeg",
+            "assets/img/An entire pallet of coffee machines Loaded with small appliances11.jpeg",
+            "assets/img/An entire pallet of coffee machines Loaded with small appliances12.jpeg",
+            "assets/img/An entire pallet of coffee machines Loaded with small appliances13.jpeg"
+        ]
+    },
+    {
+        "id": 57,
+        "name": "Aovo M365Go Electric Scooter",
+        "price": "1000",
+        "oldPrice": "1099",
+        "image": "assets/img/AOVO M365GO Electric scooter.jpeg",
+        "tag": "Electronics",
+        "inStock": true,
+        "premium": false,
+        "trending": false,
+        "created": 20251229,
+        "description": "AOVO M365GO Electric scooter $1000  per pallet 35KM Range per Charge 10.5Ah Upgraded Battery 31KM/H Max SpeedWaterproof Design 8.5-inch Pneumatic Tires",
+        "highlights": [
+            "10.5Ah Upgraded Battery",
+            "31KM/H Max SpeedWaterproof",
+            "1 Year Warranty",
+            "3 Speed Modes",
+            "Smart APP Manager",
+            "LED Front Light",
+            "All brand New message directly if interested"
+        ],
+        "variants": [
+            "assets/img/AOVO M365GO Electric scooter.jpeg",
+            "assets/img/AOVO M365GO Electric scooter1.jpeg",
+            "assets/img/AOVO M365GO Electric scooter2.jpeg",
+            "assets/img/AOVO M365GO Electric scooter3.jpeg"
+        ]
+    },
+    {
+        "id": 58,
+        "name": "Cozycloud Indoor Slippers",
+        "price": "300",
+        "oldPrice": "328",
+        "image": "assets/img/CozyCloud Indoor Slippers.jpeg",
+        "tag": "Footwear",
+        "inStock": true,
+        "premium": false,
+        "trending": false,
+        "created": 20251229,
+        "description": "All brand new some in original plastic Some great stock for resellers and carbooters Various colours and sizes available",
+        "highlights": [
+            "Brown: 3-4/5-6/7-8",
+            "Grey: 3-4/5-6/7-8",
+            "Cream: 3-4/5-6/7-8",
+            "MOQ: 70 Pairs",
+            "Can provide exact breakdowns of quantities of each if required for larger orders"
+        ],
+        "variants": [
+            "assets/img/CozyCloud Indoor Slippers.jpeg",
+            "assets/img/CozyCloud Indoor Slippers1.jpeg",
+            "assets/img/CozyCloud Indoor Slippers2.jpeg"
+        ]
+    },
+    {
+        "id": 59,
+        "name": "Detergent Pallets Available Mixed And Single Pallets",
+        "price": "500",
+        "oldPrice": "569",
+        "image": "assets/img/Detergent pallets available mixed and single pallets.jpeg",
+        "tag": "Household",
+        "inStock": true,
+        "premium": false,
+        "trending": false,
+        "created": 20251229,
+        "description": "Detergent pallets available mixed and single pallets 10 pallets available at our warehouse 250 pieces per pallet for $500 each Various brands and types available Message directly for more information",
+        "highlights": [
+            "10 pallets available at our warehouse",
+            "250 pieces per pallet for $500 each"
+        ],
+        "variants": [
+            "assets/img/Detergent pallets available mixed and single pallets.jpeg",
+            "assets/img/Detergent pallets available mixed and single pallets1.jpeg",
+            "assets/img/Detergent pallets available mixed and single pallets2.jpeg",
+            "assets/img/Detergent pallets available mixed and single pallets3.jpeg",
+            "assets/img/Detergent pallets available mixed and single pallets4.jpeg",
+            "assets/img/Detergent pallets available mixed and single pallets5.jpeg",
+            "assets/img/Detergent pallets available mixed and single pallets6.jpeg",
+            "assets/img/Detergent pallets available mixed and single pallets7.jpeg"
+        ]
+    },
+    {
+        "id": 60,
+        "name": "Dove Men And Women Antiperspirant Deodorant Spray 6 × 150Ml Case Available Now",
+        "price": "500",
+        "oldPrice": "569",
+        "image": "assets/img/Dove men and women antiperspirant deodorant spray 6 × 150ml case available now.jpeg",
+        "tag": "Beauty",
+        "inStock": true,
+        "premium": false,
+        "trending": false,
+        "created": 20251229,
+        "description": "Dove men and women antiperspirant deodorant spray 6 × 150ml case available now. A pallet going for $500 which contains 750 pieces",
+        "highlights": [],
+        "variants": [
+            "assets/img/Dove men and women antiperspirant deodorant spray 6 × 150ml case available now.jpeg",
+            "assets/img/Dove men and women antiperspirant deodorant spray 6 × 150ml case available now1.jpeg",
+            "assets/img/Dove men and women antiperspirant deodorant spray 6 × 150ml case available now2.jpeg",
+            "assets/img/Dove men and women antiperspirant deodorant spray 6 × 150ml case available now3.jpeg",
+            "assets/img/Dove men and women antiperspirant deodorant spray 6 × 150ml case available now4.jpeg",
+            "assets/img/Dove men and women antiperspirant deodorant spray 6 × 150ml case available now5.jpeg"
+        ]
+    },
+    {
+        "id": 61,
+        "name": "Gymshark New Collections Available",
+        "price": "700",
+        "oldPrice": "799",
+        "image": "assets/img/Gymshark New collections available.jpeg",
+        "tag": "Clothing",
+        "inStock": true,
+        "premium": false,
+        "trending": false,
+        "created": 20251229,
+        "description": "Gymshark New Collections Available",
+        "highlights": [
+            "Selling by pallet, each pallet contains 350 pieces",
+            "Going out for $700",
+            "Brand new and authentic coming with tags",
+            "Minimum order 80 pieces always."
+        ],
+        "variants": [
+            "assets/img/Gymshark New collections available.jpeg",
+            "assets/img/Gymshark New collections available1.jpeg",
+            "assets/img/Gymshark New collections available2.jpeg",
+            "assets/img/Gymshark New collections available3.jpeg",
+            "assets/img/Gymshark New collections available4.jpeg",
+            "assets/img/Gymshark New collections available5.jpeg",
+            "assets/img/Gymshark New collections available6.jpeg",
+            "assets/img/Gymshark New collections available7.jpeg",
+            "assets/img/Gymshark New collections available8.jpeg"
+        ]
+    },
+    {
+        "id": 62,
+        "name": "Halloween Costumes And Carving Kits",
+        "price": "12500",
+        "oldPrice": "13500",
+        "image": "assets/img/Halloween costumes and carving kits.jpeg",
+        "tag": "Toys",
+        "inStock": true,
+        "premium": false,
+        "trending": false,
+        "created": 20251229,
+        "description": "Halloween Costumes and Carving Kits $12,500 per pallet 500 Pieces per pallet Various styles and sizes available All brand new Message directly if interested",
+        "highlights": [
+            "Retail: $39,117",
+            "Cost: $12,500",
+            "We also sell in pallets ",
+            "11 pallets of costumes ",
+            "1 pallet of carving kits "
+        ],
+        "variants": [
+            "assets/img/Halloween costumes and carving kits.jpeg",
+            "assets/img/Halloween costumes and carving kits1.jpeg",
+            "assets/img/Halloween costumes and carving kits2.jpeg",
+            "assets/img/Halloween costumes and carving kits3.jpeg",
+            "assets/img/Halloween costumes and carving kits4.jpeg",
+            "assets/img/Halloween costumes and carving kits5.jpeg",
+            "assets/img/Halloween costumes and carving kits6.jpeg",
+            "assets/img/Halloween costumes and carving kits7.jpeg",
+            "assets/img/Halloween costumes and carving kits8.jpeg",
+            "assets/img/Halloween costumes and carving kits9.jpeg",
+            "assets/img/Halloween costumes and carving kits10.jpeg",
+            "assets/img/Halloween costumes and carving kits11.jpeg",
+            "assets/img/Halloween costumes and carving kits12.jpeg",
+            "assets/img/Halloween costumes and carving kits13.jpeg",
+            "assets/img/Halloween costumes and carving kits14.jpeg"
+        ]
+    },
+    {
+        "id": 63,
+        "name": "High End Electronic Pallets Are Here!",
+        "price": "2400",
+        "oldPrice": "2500",
+        "image": "assets/img/HIGH-END ELECTRONIC PALLETS ARE HERE!.jpeg",
+        "tag": "Electronics",
+        "inStock": true,
+        "premium": false,
+        "trending": false,
+        "created": 20251229,
+        "description": "Looking for the real profit-makers? We’ve got several premium LPN pallets packed tight with high-end electronics — all customer returns and shelf pulls ready to resell!",
+        "highlights": [
+            "💰 Prices range from $2,400 to $5,000 per pallet Loaded with top-tier electronics — laptops, tablets, gaming, headphones, smart home & more",
+            "📦 LPN tagged, clean manifests, and ready for inspection",
+            "🚀 Perfect for serious resellers and bulk buyers. You know these don’t last long — grab yours before they’re gone!"
+        ],
+        "variants": [
+            "assets/img/HIGH-END ELECTRONIC PALLETS ARE HERE!.jpeg",
+            "assets/img/HIGH-END ELECTRONIC PALLETS ARE HERE!1.jpeg",
+            "assets/img/HIGH-END ELECTRONIC PALLETS ARE HERE!2.jpeg",
+            "assets/img/HIGH-END ELECTRONIC PALLETS ARE HERE!3.jpeg",
+            "assets/img/HIGH-END ELECTRONIC PALLETS ARE HERE!4.jpeg"
+        ]
+    },
+    {
+        "id": 64,
+        "name": "Hp Elitebook 8460 Intel Core I5 500Gb Hdd",
+        "price": "1250",
+        "oldPrice": "1300",
+        "image": "assets/img/Hp Elitebook 8460 Intel Core i5 500gb HDD.jpeg",
+        "tag": "Electronics",
+        "inStock": true,
+        "premium": false,
+        "trending": false,
+        "created": 20251229,
+        "description": "20 pieces per pallet total prices, $1250 Every single piece had been tested and are in good shape.",
+        "highlights": [
+            "Intel Core i5",
+            "500GB HDD",
+            "8GB RAM",
+            "20 pieces per pallet"
+        ],
+        "variants": [
+            "assets/img/Hp Elitebook 8460 Intel Core i5 500gb HDD.jpeg",
+            "assets/img/Hp Elitebook 8460 Intel Core i5 500gb HDD1.jpeg",
+            "assets/img/Hp Elitebook 8460 Intel Core i5 500gb HDD2.jpeg",
+            "assets/img/Hp Elitebook 8460 Intel Core i5 500gb HDD3.jpeg"
+        ]
+    },
+    {
+        "id": 65,
+        "name": "Hpc Boxes Of Liquidated Target Electronics",
+        "price": "500",
+        "oldPrice": "569",
+        "image": "assets/img/HPC Boxes of liquidated target electronics..jpeg",
+        "tag": "Electronics",
+        "inStock": true,
+        "premium": false,
+        "trending": false,
+        "created": 20251229,
+        "description": "HPC Boxes of liquidated target electronics. Boxes are sold at random and contain a mixed assortment of electronics like earbuds, AirPods, galaxy pods, google earbuds, JBL, skull candy, and more. They also contain a mix of speakers, video games for Xbox/ps4/ps5/Nintendo switch. Lots of assorted chargers, phone cases, Power banks, controllers, radios, DVD players, and more. A pallet costs $500",
+        "highlights": [],
+        "variants": [
+            "assets/img/HPC Boxes of liquidated target electronics..jpeg",
+            "assets/img/HPC Boxes of liquidated target electronics.1.jpeg",
+            "assets/img/HPC Boxes of liquidated target electronics.2.jpeg",
+            "assets/img/HPC Boxes of liquidated target electronics.3.jpeg",
+            "assets/img/HPC Boxes of liquidated target electronics.4.jpeg",
+            "assets/img/HPC Boxes of liquidated target electronics.5.jpeg",
+            "assets/img/HPC Boxes of liquidated target electronics.6.jpeg",
+            "assets/img/HPC Boxes of liquidated target electronics.7.jpeg"
+        ]
+    },
+    {
+        "id": 66,
+        "name": "Lego Sets Pallets Just Landed!",
+        "price": "650",
+        "oldPrice": "670",
+        "image": "assets/img/LEGO SETS PALLETS JUST LANDED!.jpeg",
+        "tag": "Toys",
+        "inStock": true,
+        "premium": false,
+        "trending": false,
+        "created": 20251229,
+        "description": "New Lego Collection Available Mixed assortment per box, with $650 for 320 pieces - Sealed as shown in posts Pricing and Logistics: Price per pallet: $650 We have exciting new arrivals of Lego sets, including a variety of popular themes.",
+        "highlights": [],
+        "variants": [
+            "assets/img/LEGO SETS PALLETS JUST LANDED!.jpeg",
+            "assets/img/LEGO SETS PALLETS JUST LANDED!1.jpeg",
+            "assets/img/LEGO SETS PALLETS JUST LANDED!2.jpeg",
+            "assets/img/LEGO SETS PALLETS JUST LANDED!3.jpeg",
+            "assets/img/LEGO SETS PALLETS JUST LANDED!4.jpeg",
+            "assets/img/LEGO SETS PALLETS JUST LANDED!5.jpeg",
+            "assets/img/LEGO SETS PALLETS JUST LANDED!6.jpeg"
+        ]
+    },
+    {
+        "id": 67,
+        "name": "Manifested Laundry Detergent Pallets",
+        "price": "550",
+        "oldPrice": "570",
+        "image": "assets/img/Manifested Laundry detergent pallets.jpeg",
+        "tag": "Household",
+        "inStock": true,
+        "premium": false,
+        "trending": false,
+        "created": 20251229,
+        "description": "Manifested Laundry detergent pallets available!O Presto Premium Free & Clear 82.5 fl oz",
+        "highlights": [
+            "216 units per pallet",
+            "Our Price: $550 per pallet!",
+            "Minimum order quantity is 1 pallet"
+        ],
+        "variants": [
+            "assets/img/Manifested Laundry detergent pallets.jpeg",
+            "assets/img/Manifested Laundry detergent pallets1.jpeg",
+            "assets/img/Manifested Laundry detergent pallets2.jpeg"
+        ]
+    },
+    {
+        "id": 68,
+        "name": "New Arrivals Of Skims Pallets Available",
+        "price": "750",
+        "oldPrice": "800",
+        "image": "assets/img/New arrivals of skims pallets available.jpeg",
+        "tag": "Clothing",
+        "inStock": true,
+        "premium": false,
+        "trending": false,
+        "created": 20251229,
+        "description": "New arrivals of skims pallets available All brand new and authentic with tags 🏷️ A pallet contains 300 units and cost $750",
+        "highlights": [],
+        "variants": [
+            "assets/img/New arrivals of skims pallets available.jpeg",
+            "assets/img/New arrivals of skims pallets available1.jpeg",
+            "assets/img/New arrivals of skims pallets available2.jpeg",
+            "assets/img/New arrivals of skims pallets available3.jpeg",
+            "assets/img/New arrivals of skims pallets available4.jpeg",
+            "assets/img/New arrivals of skims pallets available5.jpeg",
+            "assets/img/New arrivals of skims pallets available6.jpeg",
+            "assets/img/New arrivals of skims pallets available7.jpeg",
+            "assets/img/New arrivals of skims pallets available8.jpeg",
+            "assets/img/New arrivals of skims pallets available9.jpeg",
+            "assets/img/New arrivals of skims pallets available10.jpeg",
+            "assets/img/New arrivals of skims pallets available11.jpeg",
+            "assets/img/New arrivals of skims pallets available12.jpeg",
+            "assets/img/New arrivals of skims pallets available13.jpeg"
+        ]
+    },
+    {
+        "id": 69,
+        "name": "Quality  Vacuum Cleaner Pallets",
+        "price": "900",
+        "oldPrice": "975",
+        "image": "assets/img/Quality  Vacuum Cleaner Pallets.jpeg",
+        "tag": "Electronics",
+        "inStock": true,
+        "premium": false,
+        "trending": false,
+        "created": 20251229,
+        "description": "In today's dynamic retail landscape, the key to sustainable growth and impressive profit margins lies in smart sourcing. Businesses, both large and small, are constantly seeking reliable channels to acquire high-quality inventory at prices that allow for competitive resale. For anyone in the business of selling home appliances or consumer electronics, the demand for effective, reliable cleaning solutions remains consistently high. This is where Vacuum Cleaner Pallets liquidation emerges as a game-changer. Quality Vacuum Cleaner Pallets liquidation & Wholesale Online",
+        "highlights": [],
+        "variants": [
+            "assets/img/Quality  Vacuum Cleaner Pallets.jpeg",
+            "assets/img/Quality  Vacuum Cleaner Pallets1.jpeg"
+        ]
+    },
+    {
+        "id": 70,
+        "name": "Walmart 079 Pallet Deal 🔥",
+        "price": "16000",
+        "oldPrice": "17500",
+        "image": "assets/img/Walmart 079 Pallet Deal 🔥.jpeg",
+        "tag": "Household",
+        "inStock": true,
+        "premium": false,
+        "trending": false,
+        "created": 20251229,
+        "description": "Walmart 079 Pallet Deal 🔥. A pallet contains 11 units of Walmart 079 products. This is a limited time offer, so don't miss out on this opportunity to stock up on high-quality Walmart products at a discounted price.",
+        "highlights": [
+            "26 Pallets Available",
+            "Total Cost: $16000",
+            "Loaded with:",
+            "Chemicals",
+            "HBA (Health & Beauty Aids)",
+            "Cleaning supplies",
+            "Tools",
+            "Small appliances",
+            "Motor oil",
+            "Diapers",
+            "Mixed essentials with strong resale value."
+        ],
+        "variants": [
+            "assets/img/Walmart 079 Pallet Deal 🔥.jpeg",
+            "assets/img/Walmart 079 Pallet Deal 🔥1.jpeg",
+            "assets/img/Walmart 079 Pallet Deal 🔥2.jpeg",
+            "assets/img/Walmart 079 Pallet Deal 🔥3.jpeg",
+            "assets/img/Walmart 079 Pallet Deal 🔥4.jpeg",
+            "assets/img/Walmart 079 Pallet Deal 🔥5.jpeg"
+        ]
+    },
+    {
+        "id": 71,
+        "name": "Winter Jacket",
+        "price": "500",
+        "oldPrice": "530",
+        "image": "assets/img/Winter jacket.jpeg",
+        "tag": "Clothing",
+        "inStock": true,
+        "premium": false,
+        "trending": false,
+        "created": 20251113,
+        "description": "Stay warm this winter with our premium winter jackets. These high-quality jackets are perfect for cold weather and come in various styles and sizes.",
+        "highlights": [
+            "All new jackets",
+            "A pallet cost $500 with 300 pieces"
+        ],
+        "variants": [
+            "assets/img/Winter jacket.jpeg",
+            "assets/img/Winter jacket1.jpeg",
+            "assets/img/Winter jacket2.jpeg"
+        ]
+    },
+    {
+        "id": 72,
+        "name": "Zara Clothing Pallets Now Available! 🔥",
+        "price": "800",
+        "oldPrice": "849",
+        "image": "assets/img/ZARA CLOTHING PALLETS NOW AVAILABLE! 🔥.jpeg",
+        "tag": "Clothing",
+        "inStock": true,
+        "premium": false,
+        "trending": false,
+        "created": 20251229,
+        "description": "Looking to stock up on premium fashion? Don’t miss this exclusive deal! Each pallet contains 300 units of authentic ZARA clothing, all brand new with tags (NWT) — a perfect mix of men’s, women’s, and kids’ wear in various sizes, styles, and seasons.",
+        "highlights": [
+            "Pallet Price: $800 only",
+            "Condition: Brand New & 100% Authentic",
+            "Contents: Tops, dresses, pants, jackets, skirts, and more!",
+            "Whether you’re a reseller, boutique owner, or online seller, this is your chance to grab high-demand ZARA inventory at unbeatable liquidation pricing."
+        ],
+        "variants": [
+            "assets/img/ZARA CLOTHING PALLETS NOW AVAILABLE! 🔥.jpeg",
+            "assets/img/ZARA CLOTHING PALLETS NOW AVAILABLE! 🔥1.jpeg",
+            "assets/img/ZARA CLOTHING PALLETS NOW AVAILABLE! 🔥2.jpeg",
+            "assets/img/ZARA CLOTHING PALLETS NOW AVAILABLE! 🔥3.jpeg",
+            "assets/img/ZARA CLOTHING PALLETS NOW AVAILABLE! 🔥4.jpeg",
+            "assets/img/ZARA CLOTHING PALLETS NOW AVAILABLE! 🔥5.jpeg",
+            "assets/img/ZARA CLOTHING PALLETS NOW AVAILABLE! 🔥6.jpeg"
+        ]
+    },
+    {
+        "id": 73,
+        "name": "🌟 High End Makeup & Skincare Pallets Available! 🌟",
+        "price": "700",
+        "oldPrice": "759",
+        "image": "assets/img/🌟 HIGH-END MAKEUP & SKINCARE PALLETS AVAILABLE! 🌟.jpeg",
+        "tag": "Beauty",
+        "inStock": true,
+        "premium": false,
+        "trending": false,
+        "created": 20251216,
+        "description": "We’ve got a limited number of premium pallets filled with top-quality makeup and skincare products — perfect for beauty resellers, salons, or personal collectors!",
+        "highlights": [
+            "💄 Each large pallet contains 300 500 brand-new items",
+            "✨ Smaller starter pallets available too over 600 items for just $700",
+            "✅ Great for beginners",
+            "✅ Open to test orders so you can check the quality before committing"
+        ],
+        "variants": [
+            "assets/img/🌟 HIGH-END MAKEUP & SKINCARE PALLETS AVAILABLE! 🌟.jpeg",
+            "assets/img/🌟 HIGH-END MAKEUP & SKINCARE PALLETS AVAILABLE! 🌟1.jpeg",
+            "assets/img/🌟 HIGH-END MAKEUP & SKINCARE PALLETS AVAILABLE! 🌟2.jpeg",
+            "assets/img/🌟 HIGH-END MAKEUP & SKINCARE PALLETS AVAILABLE! 🌟3.jpeg",
+            "assets/img/🌟 HIGH-END MAKEUP & SKINCARE PALLETS AVAILABLE! 🌟4.jpeg",
+            "assets/img/🌟 HIGH-END MAKEUP & SKINCARE PALLETS AVAILABLE! 🌟5.jpeg",
+            "assets/img/🌟 HIGH-END MAKEUP & SKINCARE PALLETS AVAILABLE! 🌟6.jpeg",
+            "assets/img/🌟 HIGH-END MAKEUP & SKINCARE PALLETS AVAILABLE! 🌟7.jpeg",
+            "assets/img/🌟 HIGH-END MAKEUP & SKINCARE PALLETS AVAILABLE! 🌟8.jpeg"
         ]
     }
 ]

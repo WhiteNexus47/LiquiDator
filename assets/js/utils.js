@@ -352,10 +352,28 @@ function updateCartBadge() {
       return sum + price * qty;
     }, 0);
 
-    // Format: no cents if whole number, otherwise two decimals
     const formatted =
       total % 1 === 0 ? total.toLocaleString() : total.toFixed(2);
+
     totalEl.textContent = `$${formatted}`;
+
+    // 👇 add this
+    adjustCartTotalSize();
+  }
+}
+
+function adjustCartTotalSize() {
+  const el = document.getElementById("cart-total");
+  if (!el) return;
+
+  const length = el.textContent.length;
+
+  if (length <= 6) {
+    el.style.fontSize = "1.2rem";
+  } else if (length <= 9) {
+    el.style.fontSize = "1rem";
+  } else {
+    el.style.fontSize = "0.85rem";
   }
 }
 

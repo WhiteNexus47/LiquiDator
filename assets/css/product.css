@@ -112,17 +112,17 @@
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: var(--cream);
-  border: 1px solid var(--brown-light);
+  background: var(--sky);
+  border: 1px solid var(--blue-light);
   display: grid;
   place-items: center;
   cursor: pointer;
   font-size: 18px;
-  color: var(--brown);
+  color: var(--text);
 }
 
 .variant-nav:hover {
-  background: var(--caramel);
+  background: var(--accent);
   color: white;
 }
 
@@ -151,18 +151,18 @@
 
 .variant-list img:not(.active) {
   opacity: 0.55;
-  outline: 1px solid var(--brown);
+  outline: 1px solid var(--blue);
 }
 
 .variant-list img:focus-visible {
-  outline: 2px solid var(--brown);
+  outline: 2px solid var(--blue);
 }
 
 .variant-list img.active {
   filter: none;
   opacity: 1;
   transform: scale(1.05);
-  outline: 2px solid var(--brown);
+  outline: 2px solid var(--blue);
   outline-offset: 2px;
 }
 
@@ -194,7 +194,7 @@
 }
 
 .p-share-btn {
-    opacity: 1 !important;
+  opacity: 1 !important;
 }
 
 .old-price {
@@ -204,7 +204,7 @@
 }
 
 .discount-badge {
-  color: green;
+  color: var(--navy);
   font-weight: 700;
   font-size: 1rem;
 }
@@ -216,7 +216,7 @@
 }
 
 .product-tag {
-  background: var(--caramel);
+  background: var(--accent);
   padding: 6px 12px;
   border-radius: 6px;
   color: white;
@@ -226,20 +226,20 @@
 
 .product-name {
   font-size: 2rem;
-  color: var(--brown);
+  color: var(--blue);
   font-family: 'Georgia', serif;
 }
 
 .product-desc {
   line-height: 1.6;
-  color: var(--coffee);
+  color: var(--navy);
   font-size: 1rem;
 }
 
 .product-highlights {
   margin-top: 12px;
   padding-left: 18px;
-  color: var(--brown-dark);
+  color: var(--blue-dark);
   font-size: 14px;
 }
 
@@ -250,7 +250,7 @@
 
 .save-box {
   font-size: 0.95rem;
-  color: green;
+  color: var(--navy);
   font-weight: 600;
 }
 
@@ -265,11 +265,11 @@
   width: 36px;
   height: 36px;
   border-radius: 6px;
-  border: 1px solid var(--brown);
+  border: 1px solid var(--blue);
   background: transparent;
   cursor: pointer;
   font-size: 18px;
-  color: var(--brown);
+  color: var(--blue);
 }
 
 .qty-selector span {
@@ -280,7 +280,7 @@
 
 .add-cart-btn {
   padding: 12px;
-  background: var(--brown);
+  background: var(--blue);
   color: white;
   border: none;
   border-radius: 0px;
@@ -291,7 +291,7 @@
 }
 
 .add-cart-btn:hover {
-  background: var(--caramel);
+  background: var(--accent);
 }
 
 /* SIMILAR PRODUCTS */
@@ -306,7 +306,7 @@
 
 .similar-products h2 {
   margin-bottom: 15px;
-  color: var(--brown);
+  color: var(--blue);
 }
 
 .similar-products .product-grid {
@@ -319,7 +319,7 @@
 
 .sim-card {
   cursor: pointer;
-  background: var(--cream);
+  background: var(--sky);
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.25s ease;
@@ -343,7 +343,7 @@
   position: absolute;
   top: 10px;
   left: 10px;
-  background: green;
+  background: var(--blue);
   color: white;
   font-size: 0.8rem;
   padding: 4px 8px;
@@ -355,7 +355,7 @@
   position: absolute;
   bottom: 10px;
   right: 10px;
-  background: var(--brown);
+  background: var(--blue);
   color: white;
   border: none;
   padding: 6px 10px;
@@ -375,7 +375,7 @@
 
 .sim-body h4 {
   font-size: 0.9rem;
-  color: var(--brown);
+  color: var(--navy);
   margin-bottom: 6px;
 }
 
@@ -393,10 +393,9 @@
 
 .sim-price .new {
   font-weight: 700;
-  color: var(--brown);
+  color: var(--navy);
 }
 
-/* MOBILE STICKY CART BAR */
 .mobile-cart-bar {
   display: none;
 }
@@ -408,7 +407,7 @@
   max-width: 1100px;
   margin: 10px auto;
   padding: 0 20px;
-  color: var(--brown);
+  color: var(--text);
 }
 
 .reviews-section h2 {
@@ -430,7 +429,7 @@
 .avg-rating {
   font-size: 26px;
   font-weight: 600;
-  color: var(--brown);
+  color: var(--blue);
 }
 
 .review-count {
@@ -440,7 +439,7 @@
 .reviews-arrow {
   font-size: 1.5rem;
   transition: transform 0.3s ease;
-  color: var(--brown);
+  color: var(--blue);
 }
 
 .review-dropdown {
@@ -468,7 +467,7 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
-  border-top: 1px solid var(--brown-light);
+  border-top: 1px solid var(--blue-light);
   padding-top: 40px;
 }
 
@@ -481,7 +480,7 @@
 .review-avatar {
   width: 48px;
   height: 48px;
-  background: var(--brown-light);
+  background: var(--blue-light);
   border-radius: 50%;
   flex-shrink: 0;
 }
@@ -498,8 +497,9 @@
   margin-bottom: 5px;
 }
 
-.review-head strong {
+.review strong {
   font-weight: 600;
+  color: var(--blue-dark);
 }
 
 .review-date {
@@ -508,9 +508,15 @@
 }
 
 .review-stars {
-  color: var(--brown);
+  color: var(--text);
   font-size: 16px;
   margin-bottom: 8px;
+}
+
+.review-stars .star {
+  color: gold;
+  margin-left: 4px;
+  font-size: 14px;
 }
 
 .review-body p {
@@ -524,10 +530,11 @@
 .add-review {
   margin-top: 80px;
   padding-top: 40px;
-  border-top: 1px solid var(--brown-light);
+  border-top: 1px solid var(--blue-light);
 }
 
 .add-review h3 {
+  color: var(--blue);
   font-size: 26px;
   margin-bottom: 10px;
 }
@@ -548,12 +555,12 @@
 }
 
 .star-input span {
-  color: var(--brown-light);
+  color: rgb(253, 246, 205);
   transition: color 0.2s ease;
 }
 
 .star-input span.active {
-  color: var(--brown);
+  color: gold;
 }
 
 /* Inputs */
@@ -562,7 +569,7 @@
   min-height: 120px;
   padding: 12px;
   font-family: inherit;
-  border: 1px solid var(--brown-light);
+  border: 1px solid var(--blue-light);
   resize: vertical;
   margin-bottom: 20px;
   outline: none;
@@ -577,14 +584,14 @@
 
 .review-fields input {
   padding: 12px;
-  border: 1px solid var(--brown-light);
+  border: 1px solid var(--blue-light);
   font-family: inherit;
   outline: none;
 }
 
 /* Submit button */
 #reviewForm button {
-  background: var(--brown);
+  background: var(--blue);
   color: white;
   padding: 12px 28px;
   border: none;
@@ -594,7 +601,7 @@
 }
 
 #reviewForm button:hover {
-  background: var(--caramel);
+  background: var(--accent);
 }
 
 @media (max-width: 600px) {
@@ -644,8 +651,8 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    background: var(--cream);
-    border-top: 1px solid var(--brown-light);
+    background: var(--sky);
+    border-top: 1px solid var(--blue-light);
     padding: 12px;
     /* ensure it doesn't collide with iOS safe area */
     padding-bottom: calc(12px + env(safe-area-inset-bottom));
@@ -663,15 +670,15 @@
     font-weight: 600;
     border-radius: 0px;
     border: none;
-    background: var(--brown);
+    background: var(--blue);
     color: white;
     cursor: pointer;
   }
 
   .mobile-cart-btn.remove {
     background: white;
-    color: var(--brown);
-    border: 1px solid var(--brown);
+    color: var(--blue);
+    border: 1px solid var(--blue);
   }
 }
 
