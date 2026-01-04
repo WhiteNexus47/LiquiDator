@@ -280,6 +280,7 @@ header {
     transition: color 0.25s ease;
 }
 
+
 .nav-desktop a::before {
     content: "";
     position: absolute;

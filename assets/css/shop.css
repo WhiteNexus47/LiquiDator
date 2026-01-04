@@ -24,7 +24,7 @@ body {
 ============================================ */
 
 .shop-top-container {
-    width: 270px;
+    width: 250px;
     flex-shrink: 0;
     background: var(--bg);
     height: 100%;
